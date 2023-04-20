@@ -3,9 +3,50 @@
 	$link = cargar_barras_de_busqueda_header ();
 
     // POR FAVOR PREGUNTAR POR ESTO QUE ESTOY PONIENDO CON TANTA SEGURIDAD ACÁ ABAJO
-    if (isset($_POST["datos"])) { // si hay solicitud, la acepta
-	mysqli_free_result($lista); // limpia la lista anterior, que sí o sí tendrá contenido
-        $lista = $_POST;
+    if (isset($_POST["buscar"])) { // si hay solicitud, la acepta
+	    mysqli_free_result($lista); // limpia la lista anterior, que sí o sí tendrá contenido
+        // proceso de buscar.php, que ahora está acá para no tener que hacer pases inútiles
+        $nombre = $_POST["nombre"];
+        $genero = $_POST["genero"];
+        $plataforma = $_POST["plataforma"];
+        $lista = cargar_lista_completa(); // carga todos los juegos
+        $aux = array ();
+        if (($nombre != null) || ($nombre != "")) {
+            foreach ($lista as $dato) {
+                if (strpos($dato["nombre"], $nombre)) {
+                    array_push ($aux, $dato);
+                } else {
+                    if (strpos($dato["descripcion"], $nombre)) { // se fija también si fue mencionado en la descripción
+                        array_push ($aux, $dato);
+                    }
+                }
+            }
+            $lista = $aux;
+            $aux = array ();
+        } 
+        if ($genero != 1) {
+            foreach ($lista as $dato) {
+                if ($dato["id_genero"] == $genero) {
+                    array_push ($aux, $dato);
+                }
+            }
+            $lista = $aux;
+            $aux = array ();
+        }
+        if ($plataforma != 1) {
+            foreach ($lista as $dato) {
+                if ($dato["id_plataforma"] == $plataforma) {
+                    array_push ($aux, $dato);
+                }
+            }
+            $lista = $aux;
+            $aux = array ();
+        }
+        array_multisort(array_column($lista, 'nombre'), SORT_ASC, $lista); // supuestamente esto ordena los datos por nombre. Comprobar
+
+
+
+
     } else { // sino carga la lista completa
         $lista = cargar_lista_completa(); 
     }
