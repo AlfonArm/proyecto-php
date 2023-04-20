@@ -84,27 +84,36 @@
     </div>
     <div class = "lista">
         <?php
+            // función provicional: hasta que encontremos una mejor opción, está esto
+            function buscar_por_id ($categoria ,$id_cat) {
+                foreach ($categoria as $elemento) {
+                    if ($elemento["id"] == $id_cat) {
+                        return $elemento;
+                    }
+                }
+            }
             if ($lista) {
                 foreach ($lista as $juego) {
                     $juego_nombre = $juego["nombre"];
                     $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
                     $juego_desc = $juego["descripcion"];
                     $juego_url = $juego["url"];
-			
-                    $juego_id_genero = $juego["id_genero"];
-                    $juego_id_plataforma = $juego["id_plataforma"];
-                    $juego_genero = ($generos['$juego_id_genero'])["nombre"];
-                    $juego_plataforma = ($plataformas['$juego_id_plataforma'])["nombre"];
-                
+
+                    $genero_filtrado = buscar_por_id ($generos, $juego["id_genero"]);                  
+                    $juego_genero = $genero_filtrado["nombre"];
+
+                    $plataforma_filtrado = buscar_por_id ($plataformas, $juego["id_plataforma"]);                  
+                    $juego_plataforma = $plataforma_filtrado["nombre"];
+
                     echo
                     "<div class = 'bloque_info' id = 'agregar_juego'>
                         <img src = '$juego_imagen' class = 'reducir_img transicion borde_img'/>
                         <div class = 'info_right'>
                             <p>$juego_nombre</p>
                             <p>$juego_desc</p>
-			    <p>$juego_genero</p>
-               		    <p>$juego_plataforma</p>
-                            <p>$juego_url</p>
+			                <p>Género: $juego_genero</p>
+               		        <p>Plataforma: $juego_plataforma</p>
+                            <p>Página web: $juego_url</p>
                         </div>
                     </div>";
                 }
