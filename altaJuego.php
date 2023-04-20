@@ -19,7 +19,7 @@
             descripcion = document.getElementById("descripcion").value;
             plataforma = document.getElementById("plataforma").value;
             url_juego = document.getElementById("url_juego").value;
-            imagen = document.getElementById("imagen").value;
+            imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
             cont = 0;
 
             if ((nombre_juego == null) || (nombre_juego == "")) {
