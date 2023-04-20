@@ -10,6 +10,10 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         foreach ($datos as $dato) {
             if (strpos($dato["nombre"], $nombre)) {
                 array_push ($aux, $dato);
+            } else {
+                if (strpos($dato["descripcion"], $nombre)) { // se fija también si fue mencionado en la descripción
+                    array_push ($aux, $dato);
+                }
             }
         }
         $datos = $aux;
@@ -33,6 +37,7 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         $datos = $aux;
         $aux = array ();
     }
+    array_multisort(array_column($datos, 'nombre'), SORT_ASC, $datos); // supuestamente esto ordena los datos por nombre. Comprobar
     /*
     y acá terminé de filtrar los datos, almacenados en $datos
     y este es el momento en el que le pido el favor a chat-gpt
