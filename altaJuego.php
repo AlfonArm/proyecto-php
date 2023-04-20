@@ -21,8 +21,6 @@
             url_juego = document.getElementById("url_juego").value;
             imagen = document.getElementById("imagen").value;
             cont = 0;
-            /* desactivo temporalmente las comprobaciones para ver si se pueden subir efectivamente los
-            elementos
 
             if ((nombre_juego == null) || (nombre_juego == "")) {
                 document.getElementById("return_nombre").innerHTML = "Este campo es obligatorio";
@@ -54,14 +52,13 @@
                     cont++;
                 }
             }
-            */
             return (cont == 0);
         }
     </script>
 </head>
 <body>
     <?php include_once 'header.php'; ?>
-    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php">
+    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php"> <!--Se envían los datos sin tener en cuenta si se cumplen con los requisitos-->
         <div class = "flex"> 
             <div class="espacio_form">
                 <fieldset>

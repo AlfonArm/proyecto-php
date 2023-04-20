@@ -2,11 +2,16 @@
 	require_once ("conexionBD.php");
 	$link = cargar_barras_de_busqueda_header ();
 
-    if (isset($_POST)) { 
+    // POR FAVOR PREGUNTAR POR ESTO QUE ESTOY PONIENDO CON TANTA SEGURIDAD ACÁ ABAJO
+    if (isset($_POST["datos"])) { // si hay solicitud, la acepta
         $lista = $_POST;
-    } else {
-        $lista = cargar_lista_completa();
+    } else { // sino carga la lista completa
+        $lista = cargar_lista_completa(); 
     }
+    // Las solicitudes se van a dar desde buscar.php. La cosa es que, al poner datos, los enviamos a buscar, donde se agarran todos los datos y se empiezan a filtrar. Una vez
+    // filtrados, se decide enviar los datos usando el método post. Acá se reciben en caso de haberlos
+
+    // bueno, esto es para cargar la lista de géneros y plataformas. Sirven para llenar de contenido los options que corresponden
     $generos = select_datos ($link, "generos");
 	$plataformas = select_datos ($link, "plataformas");
 

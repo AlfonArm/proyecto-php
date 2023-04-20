@@ -7,7 +7,7 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
     $datos = cargar_lista_completa(); // carga todos los juegos
     $aux = array ();
     if (($nombre != null) || ($nombre != "")) {
-        foreach ($dato as $datos) {
+        foreach ($datos as $dato) {
             if (strpos($dato["nombre"], $nombre)) {
                 array_push ($aux, $dato);
             }
@@ -16,7 +16,7 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         $aux = array ();
     } 
     if ($genero != 1) {
-        foreach ($dato as $datos) {
+        foreach ($datos as $dato) {
             if ($dato["id_genero"] == $genero) {
                 array_push ($aux, $dato);
             }
@@ -25,7 +25,7 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         $aux = array ();
     }
     if ($plataforma != 1) {
-        foreach ($dato as $datos) {
+        foreach ($datos as $dato) {
             if ($dato["id_plataforma"] == $plataforma) {
                 array_push ($aux, $dato);
             }
@@ -33,13 +33,15 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         $datos = $aux;
         $aux = array ();
     }
-    // y acá terminé de filtrar los datos, almacenados en $datos
-    // y este es el momento en el que le pido el favor a chat-gpt
+    /*
+    y acá terminé de filtrar los datos, almacenados en $datos
+    y este es el momento en el que le pido el favor a chat-gpt
+
     $options = array(
         'http' => array(
             'method' => 'POST',
-            'header' => 'Content-type: application/x-www-form-urlencoded',
-            'content' => http_build_query(array('datos' => $datos))
+            'header' => 'Content-type: application/x-www-form-urlencoded', // que alguien me explique esto porfavor
+            'content' => http_build_query($datos)
         )
     );
     $context = stream_context_create($options);
@@ -51,5 +53,19 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
     } else {
         echo "Ocurrió un error al enviar los datos.";
     }
-    // y acá hice una solicitud a index. Esta, de ser null, cargaría todos los juegos
+
+    No funciona
+    plan para probar cómo funciona la recepción de datos
+
+    */
 }
+
+?>
+<!--
+<html>
+    <form action="index.php" method="POST">
+        <?php //echo "<button name='datos' value = 'Subir'/>"?>
+    </form>
+</html>
+
+Formulario de prueba para ver cómo se enviaban los datos
