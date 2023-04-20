@@ -15,7 +15,7 @@ if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirm
 	or die("Error " . mysqli_error($link));
     mysqli_query($link, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
     VALUES ('null','$nombre','$imagen','$tipo_imagen','$descripcion','$url','$id_genero','$id_plataforma')");
-    printf("Id del registro creado %d\n", mysqli_insert_id($link));
+    require_once ('altaJuego.php) // vuelve a la p
 
 }
 ?>
