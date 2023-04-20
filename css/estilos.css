@@ -1,0 +1,165 @@
+.abajo {
+	background-color: black;
+}
+body {
+	background-color: rgb(133, 146, 158);
+	margin: 0;
+}
+h1 {
+	width: 60px;
+	margin-right: 100px;
+	color:rgb(128, 203, 196);
+	float: right;
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.lista {
+	background-color: rgb(93, 173, 226);
+	margin-left: 150px;
+	margin-right: 150px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-left: 5px solid rgb(128, 203, 196); /* definir un mejor color*/
+	border-right: 5px solid rgb(128, 203, 196);
+	min-height: 100%;
+}
+.inicio {
+	background-color: purple;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+.reducir_img {
+	width: 15%;
+}
+header p {
+	padding-bottom: 30px;
+	color:rgb(153, 163, 164);
+	margin-block-end: 0;
+}
+form {
+	background-color: black;
+	margin-block-end: 0;
+}
+div form {
+	display: flex
+	"width: 400px";
+	float: "left"
+}
+.bloque_info {
+	display:flex;
+	padding: 20px;
+	border:4px solid rgb(36, 113, 163);
+	background-color: rgb(174, 214, 241);
+	margin: 30px;
+	border-radius: 10px;
+}
+.transicion {
+	transition: transform .2s;
+}
+.transicion:hover {
+	transform: scale(2);
+}
+.borde_img {
+	border: 2px solid rgb(244, 208, 63); /* no me gustó mucho este color :P*/
+	border-radius: 10px;
+}
+.bloques_header {
+	float: left
+}
+.barra {
+	padding-top: 10px;
+	padding-bottom: 30px;
+	background-color: black;
+	padding-left: 20%;
+}
+.bloques_header label {
+	color: white;
+	margin-left: 10px;
+	margin-right: 10px
+}
+.borde_img .transicion {
+	float: left;
+	border-width: 20px;
+}
+.info_right {
+	float: right;
+	margin-left: 50px;
+}
+footer {
+	padding-top: 10px;
+	padding-bottom: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+footer p {
+	color: rgb(244, 208, 63);
+	margin-block-end: 0;
+	margin-block-start: 0;
+}
+.centrar {
+	display: block;
+}
+
+.info_right .bloques_header {
+	margin-right: 50px;
+	padding-right: 50px;
+}
+
+header .reducir_img { /*sino el ícono queda un poco grande. Usar este tamaño para definir el ajuste del ícono*/
+	width: 8%;
+}
+
+
+
+.cuadro {
+	background-color:rgb(93, 173, 226);
+	border:3px solid rgb(174, 214, 241);
+	padding-right: 30px;
+	padding-left: 30px;
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	max-width: 900px;
+	min-height: 80%;
+}
+
+.espacio_form {
+	padding: 20px;
+	float: left;
+}
+
+fieldset input {
+	margin: 20px;
+}
+
+.texto_grande {
+	width: 200px;
+	height: 100px;
+}
+
+#confirmar {
+	margin: 20px;
+	align-items: center;
+	padding: 20px;
+}
+
+.flex {
+	display: flex;
+}
+
+#ir_a_agregar {
+	margin-left: 95%;
+}
+
+fieldset p, #return_imagen {
+	margin-block-start: 0;
+    margin-block-end: 0;
+	color: rgb(255, 58, 58)
+}
+
+header select {
+	padding-right: 10px;
+	margin-right: 10px;
+}
