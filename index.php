@@ -4,6 +4,7 @@
 
     // POR FAVOR PREGUNTAR POR ESTO QUE ESTOY PONIENDO CON TANTA SEGURIDAD ACÁ ABAJO
     if (isset($_POST["datos"])) { // si hay solicitud, la acepta
+	mysqli_free_result($lista); // limpia la lista anterior, que sí o sí tendrá contenido
         $lista = $_POST;
     } else { // sino carga la lista completa
         $lista = cargar_lista_completa(); 
@@ -21,9 +22,7 @@
         require_once ("cargar_datos.php");
         cargar_gen_y_plat (); // en clase comprobar esto
     }
-    function limpiar_lista () {
-        mysqli_free_result($lista_completa); // esto debe aplicarse cuando se quiere limpiar la lista. Es decir, al hacer click en buscar.
-    }
+
 ?>
 <html>
 <head>
@@ -50,23 +49,20 @@
                     $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
                     $juego_desc = $juego["descripcion"];
                     $juego_url = $juego["url"];
-                /*
+			
                     $juego_id_genero = $juego["id_genero"];
                     $juego_id_plataforma = $juego["id_plataforma"];
                     $juego_genero = ($generos['$juego_id_genero'])["nombre"];
                     $juego_plataforma = ($plataformas['$juego_id_plataforma'])["nombre"];
                 
-                    También saqué del echo de abajo lo siguiente (iría arriba del p de la url):
-                    <p>$juego_genero</p>
-                    <p>$juego_plataforma</p>
-                    Esta sección hay que revisarla porque no se cargan los IDs
-                */
                     echo
                     "<div class = 'bloque_info' id = 'agregar_juego'>
                         <img src = '$juego_imagen' class = 'reducir_img transicion borde_img'/>
                         <div class = 'info_right'>
                             <p>$juego_nombre</p>
                             <p>$juego_desc</p>
+			    <p>$juego_genero</p>
+               		    <p>$juego_plataforma</p>
                             <p>$juego_url</p>
                         </div>
                     </div>";
