@@ -15,7 +15,6 @@ if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirm
 	or die("Error " . mysqli_error($link));
     mysqli_query($link, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
     VALUES ('null','$nombre','$imagen','$tipo_imagen','$descripcion','$url','$id_genero','$id_plataforma')");
-    require_once ('altaJuego.php) // vuelve a la p
-
+    require_once ('altaJuego.php'); // vuelve a la página de antes (me gustaría que diga un "SUBIDO" o algo así)
 }
 ?>

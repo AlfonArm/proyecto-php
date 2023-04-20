@@ -12,7 +12,7 @@
     <script>
         function dio_click () {
             function es_mas_corto_que (elem, long) {
-                return elem.lenght <= long;
+                return (elem.lenght < long);
             }
             
             // pregunté sobre esto en la clase y me dijeron que el return funcionaba correctamente y que debe haber un error a la hora de tomar un valor. De ahí los console.log
@@ -24,8 +24,8 @@
             console.log(plataforma)
             url_juego = document.getElementById("url_juego").value;
             console.log(url_juego)
-            imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
-            console.log(imagen) // esto qué?
+            // imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
+            // console.log(imagen) // esto qué?
             // respecto a la imagen, parece que hoy van a subir contenido. Una vez veamos eso vamos a estar más cómodos
             cont = 0;
 
@@ -33,10 +33,11 @@
                 document.getElementById("return_nombre").innerHTML = "Este campo es obligatorio";
                 cont++;
             }
-            if (imagen == null) {
+            /*if (imagen == null) {
                 document.getElementById("return_imagen").innerHTML = "Este campo es obligatorio";
                 cont++;
             }
+            */
             if (plataforma == 1) {
                 document.getElementById("return_plataforma").innerHTML = "Inserte una opción válida";
                 cont++;
