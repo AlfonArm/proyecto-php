@@ -38,6 +38,8 @@ if (isset($_POST["buscar"])) { // recibo la notificación post. Puedo ver qué d
         $aux = array ();
     }
     array_multisort(array_column($datos, 'nombre'), SORT_ASC, $datos); // supuestamente esto ordena los datos por nombre. Comprobar
+    
+    // PROBAR ESTO https://es.stackoverflow.com/questions/153796/pasar-datos-entre-archivos-php
     /*
     y acá terminé de filtrar los datos, almacenados en $datos
     y este es el momento en el que le pido el favor a chat-gpt
