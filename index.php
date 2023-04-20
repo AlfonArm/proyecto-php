@@ -4,7 +4,7 @@
 
     // POR FAVOR PREGUNTAR POR ESTO QUE ESTOY PONIENDO CON TANTA SEGURIDAD ACÁ ABAJO
     if (isset($_POST["buscar"])) { // si hay solicitud, la acepta
-	    mysqli_free_result($lista); // limpia la lista anterior, que sí o sí tendrá contenido
+	    // al parecer no es necesario limpiar $lista porque el cambio de instancia lo limpia por sí solo
         // proceso de buscar.php, que ahora está acá para no tener que hacer pases inútiles
         $nombre = $_POST["nombre"];
         $genero = $_POST["genero"];
