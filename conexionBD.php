@@ -1,6 +1,10 @@
 <?php
+
+// El archivo debe llamarse proyecto_php
+
 error_reporting(E_ALL);
 ini_set ("display_errors", true);
+$access = array ('localhost', 'root', '', 'proyecto_php');
 
 // FUNCIONA BIEN
 // recibe el total de datos y selecciona el apartado que le digas (juegos por default)
@@ -16,7 +20,7 @@ function select_datos ($link, $seccion = 'juegos') {
 // FUNCIONA BIEN
 // carga todos los datos. El nombre de la función es confuso, pero se llama así porque esos datos (completos) los usaré para cargar los datos de búsqueda del header
 function cargar_barras_de_busqueda_header () {
-	$link = mysqli_connect ('localhost', 'root', '', 'proyecto_php') // carga el proyecto_php
+	$link = mysqli_connect ($access) // carga el proyecto_php
 	or die ('Error'. mysqli_error ($link)); // o dice el error si lo hay
 	if ($link) {
 		return $link;
