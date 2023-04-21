@@ -1,7 +1,7 @@
 <?php
 
-function cargar_gen_y_plat () {
-mysqli_query(INSERT INTO `plataformas`(`id`, `nombre`) VALUES 
+function cargar_gen_y_plat ($link) {
+mysqli_query($link, "INSERT INTO `plataformas`(`id`, `nombre`) VALUES 
 (1, 'Ninguna asignada'),
 (2, 'PS5'),
 (3, 'PS4'),
@@ -24,9 +24,9 @@ mysqli_query(INSERT INTO `plataformas`(`id`, `nombre`) VALUES
 (20, 'Xbox 360'),
 (21, 'Xbox'),
 (22, 'Atari 2000'),
-(23, 'PC'))
+(23, 'PC')");
 
-mysqli_query(INSERT INTO `generos`(`id`, `nombre`) VALUES
+mysqli_query($link, "INSERT INTO `generos`(`id`, `nombre`) VALUES
     (1, 'No asignado'),
     (2, '4X'),
     (3, 'Acción'),
@@ -102,6 +102,6 @@ mysqli_query(INSERT INTO `generos`(`id`, `nombre`) VALUES
     (73, 'Tower Defense'),
     (74, 'TPS'),
     (75, 'Tycoon'),
-    (76, 'Warzone'));
+    (76, 'Warzone')");
 }
 ?>

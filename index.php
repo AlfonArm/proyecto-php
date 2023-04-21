@@ -2,13 +2,13 @@
 	require_once ("conexionBD.php");
 	$link = cargar_barras_de_busqueda_header ();
 
-    // POR FAVOR PREGUNTAR POR ESTO QUE ESTOY PONIENDO CON TANTA SEGURIDAD ACÁ ABAJO
-    if (isset($_POST["buscar"])) { // si hay solicitud, la acepta
+    // Ahora funciona con el método get porque es más cómodo para el usuario. Creo
+    if (isset($_GET["buscar"])) { // si hay solicitud, la acepta
 	    // al parecer no es necesario limpiar $lista porque el cambio de instancia lo limpia por sí solo
         // proceso de buscar.php, que ahora está acá para no tener que hacer pases inútiles
-        $nombre = $_POST["nombre"];
-        $genero = $_POST["genero"];
-        $plataforma = $_POST["plataforma"];
+        $nombre = $_GET["nombre"];
+        $genero = $_GET["genero"];
+        $plataforma = $_GET["plataforma"];
         $lista = cargar_lista_completa(); // carga todos los juegos
         $aux = array ();
         if (($nombre != null) || ($nombre != "")) {
@@ -42,27 +42,29 @@
             $lista = $aux;
             $aux = array ();
         }
-        array_multisort(array_column($lista, 'nombre'), SORT_ASC, $lista); // supuestamente esto ordena los datos por nombre. Comprobar
-
-
-
-
     } else { // sino carga la lista completa
-        $lista = cargar_lista_completa(); 
+        $lista = cargar_lista_completa();
     }
-    // Las solicitudes se van a dar desde buscar.php. La cosa es que, al poner datos, los enviamos a buscar, donde se agarran todos los datos y se empiezan a filtrar. Una vez
-    // filtrados, se decide enviar los datos usando el método post. Acá se reciben en caso de haberlos
+    /* if ($la lista tiene elementos, para lo cuál habría que preguntar) {
+        array_multisort(array_column($lista, 'nombre'), SORT_ASC, $lista); // supuestamente esto ordena los datos por nombre. Comprobar
+    }
+    */
 
     // bueno, esto es para cargar la lista de géneros y plataformas. Sirven para llenar de contenido los options que corresponden
     $generos = select_datos ($link, "generos");
 	$plataformas = select_datos ($link, "plataformas");
 
-    if (($generos == null) && ($plataformas == null)) { // esto sirve basicamente para que, si es la primera vez que se mete, estén todos los géneros y plataformas cargados.
+    /*
+    if ($generos no tiene elementos) { // esto sirve basicamente para que, si es la primera vez que se mete, estén todos los géneros y plataformas cargados.
     // dado que no se pueden subir desde la página, sino que son definidos por el servidor, este método asegura que se puedan interactuar con los elementos sin tener que
     // asignarlos manualmente.
+    pero por alguna razón no funciona, por lo que dejo para preguntar
         require_once ("cargar_datos.php");
-        cargar_gen_y_plat (); // en clase comprobar esto
+        cargar_gen_y_plat ($link);
+    } else {
+        echo "<p>:D</p>";
     }
+    */
 
 ?>
 <html>
@@ -74,6 +76,12 @@
             window.location.href = "altaJuego.php"
         }
     </script>
+    <script>
+        nombre_ventana = document.getElementById("ventana_confirmacion_juego");
+        if ((nombre_ventana != null) or (nombre_ventana != "")) {
+            // mostrar una ventana flotante
+        }
+    </script>
 </head>
 <body>
     <?php include_once 'header.php'; ?>
@@ -83,6 +91,15 @@
         </button>
     </div>
     <div class = "lista">
+    <?php
+        if (isset($_SESSION["mostrar_nombre"])) { // nop, no lo acepta
+            require("subir.php");
+            $nuevo_juego = $_SESSION["mostrar_nombre"];
+            echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
+            // acá estaría bueno poner que se quede un par de segundos
+            unset($_SESSION["mostrar_nombre"]);
+        }
+    ?>
         <?php
             // función provicional: hasta que encontremos una mejor opción, está esto
             function buscar_por_id ($categoria ,$id_cat) {

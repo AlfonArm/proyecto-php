@@ -17,13 +17,9 @@
             
             // pregunté sobre esto en la clase y me dijeron que el return funcionaba correctamente y que debe haber un error a la hora de tomar un valor. De ahí los console.log
             nombre_juego = document.getElementById("nombre_juego").value;
-            console.log(nombre_juego)
-            descripcion = document.getElementById("descripcion").value;
-            console.log(descripcion)
+            descripcion = document.getElementById("descripcion").value; // creo que hay un problema con esto
             plataforma = document.getElementById("plataforma").value;
-            console.log(plataforma)
             url_juego = document.getElementById("url_juego").value;
-            console.log(url_juego)
             // imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
             // console.log(imagen) // esto qué?
             // respecto a la imagen, parece que hoy van a subir contenido. Una vez veamos eso vamos a estar más cómodos

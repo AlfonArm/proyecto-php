@@ -4,7 +4,7 @@
         <h1>Gamepedia</h1>
         <p>Donde los gamers se unen</p>
     </div>
-    <form method = "post" action = "index.php">
+    <form method = "get" action = "index.php">
         <div class = "barra" id = "info_busqueda">
             <div class = "bloques_header">
                 <label>Buscar:</label>

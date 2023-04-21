@@ -2,8 +2,9 @@
 
 // El archivo debe llamarse proyecto_php
 
-error_reporting(E_ALL);
-ini_set ("display_errors", true);
+// sacar las barras cuando se quiera detectar un error
+//error_reporting(E_ALL);
+//ini_set ("display_errors", true);
 // el $access no funcionó, parece. Vuelvo a los cambios anteriores
 
 // FUNCIONA BIEN
