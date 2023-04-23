@@ -1,4 +1,4 @@
-# php-primer-entrega
+# proyecto-php
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
@@ -24,5 +24,5 @@ La url del repo es:  https://github.com/Carlos7272/php-primer-entrega.git
 **Ejecutar los comandos para bajar codigo o actualizar ramas locales con cambios en la rama GITHUB**:
 - `git pull origin RAMA_GITHUB` bajamos nuevos cambios encontrados en la rama GITHUB
 
-**La lista de cosas a hacer es la siguiente**
-https://docs.google.com/document/d/16WgV5FFNK7jbKK-8Y6tPlPawjgWmzebldtl742AlBF0/edit?usp=sharing
+**La lista de cosas a hacer es la siguiente**: 
+- https://docs.google.com/document/d/16WgV5FFNK7jbKK-8Y6tPlPawjgWmzebldtl742AlBF0/edit?usp=sharing
