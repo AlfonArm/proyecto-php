@@ -77,10 +77,12 @@
         }
     </script>
     <script>
+        /*
         nombre_ventana = document.getElementById("ventana_confirmacion_juego");
-        if ((nombre_ventana != null) or (nombre_ventana != "")) {
+        if ((nombre_ventana != null) || (nombre_ventana != "")) {
             // mostrar una ventana flotante
         }
+        */
     </script>
 </head>
 <body>

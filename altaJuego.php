@@ -11,29 +11,24 @@
     <title>Subir juego</title>
     <script>
         function dio_click () {
-            function es_mas_corto_que (elem, long) {
-                return (elem.lenght < long);
-            }
-            
             // pregunté sobre esto en la clase y me dijeron que el return funcionaba correctamente y que debe haber un error a la hora de tomar un valor. De ahí los console.log
             nombre_juego = document.getElementById("nombre_juego").value;
-            descripcion = document.getElementById("descripcion").value; // creo que hay un problema con esto
+            descripcion = document.getElementById("descripcion").value;
             plataforma = document.getElementById("plataforma").value;
             url_juego = document.getElementById("url_juego").value;
             // imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
             // console.log(imagen) // esto qué?
             // respecto a la imagen, parece que hoy van a subir contenido. Una vez veamos eso vamos a estar más cómodos
             cont = 0;
-
+            console.log(cont);
             if ((nombre_juego == null) || (nombre_juego == "")) {
                 document.getElementById("return_nombre").innerHTML = "Este campo es obligatorio";
                 cont++;
             }
-            /*if (imagen == null) {
+            if (imagen == null) {
                 document.getElementById("return_imagen").innerHTML = "Este campo es obligatorio";
                 cont++;
             }
-            */
             if (plataforma == 1) {
                 document.getElementById("return_plataforma").innerHTML = "Inserte una opción válida";
                 cont++;
@@ -42,21 +37,21 @@
                 document.getElementById("return_desc").innerHTML = "Este campo es obligatorio";
                 cont++;
             } else {
-                if (!es_mas_corto_que(descripcion, 255)) {
+                if (descripcion.lenght > 5) { // esto no anda
                     document.getElementById("return_desc").innerHTML = "La descripción es muy larga";
                     cont++;
                 }
             }
             if ((url_juego == null) || (url_juego == "")) {
-                document.getElementById("return_enlace").innerHTML = "Este campo es obligatorio";
+                document.getElementById("url_juego").innerHTML = "Este campo es obligatorio";
                 cont++;
             } else {
-                if (!es_mas_corto_que(url_juego, 80)) {
-                    document.getElementById("return_enlace").innerHTML = "El enlace es muy largo";
+                if (url_juego.lenght > 80) { // por ende esto tampoco
+                    document.getElementById("url_juego").innerHTML = "El enlace es muy largo";
                     cont++;
                 }
             }
-            return (cont == 0);
+            return (cont == 0); // el resto funciona
         }
     </script>
 </head>
@@ -67,7 +62,7 @@
             <div class="espacio_form">
                 <fieldset>
                     <legend>Nombre</legend>
-                    <input type="" placeholder="Nombre del juego" id = "nombre_juego" name = "nombre_juego">
+                    <input placeholder="Nombre del juego" id = "nombre_juego" name = "nombre_juego">
                     <p id = "return_nombre"></p>
                 </fieldset>
                 <fieldset>
