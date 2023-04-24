@@ -5,7 +5,6 @@ $host_name = Constants::HOST_NAME;
 $user_name = Constants::USER_NAME;
 $password = Constants::PASSWORD;
 $data_base = Constants::DATA_BASE;
-$connect_bd = mysqli_connect ($host_name, $user_name , $password, $data_base);
 $link_bd = mysqli_connect ($host_name, $user_name , $password, $data_base) or die ('Error'. mysqli_error ($link_bd));
 function select_datos ($link, $seccion = 'juegos') {
 	$query = mysqli_query($link, "SELECT * FROM $seccion"); // de link tomo todos los query, que cargados modularmente serían options
@@ -16,13 +15,13 @@ function select_datos ($link, $seccion = 'juegos') {
 	}
 }
 function cargar_barras_de_busqueda_header () {
-	if ($GLOBALS['connect_bd']) return $GLOBALS['connect_bd'];
+	if ($GLOBALS['link_bd']) return $GLOBALS['link_bd'];
 }
 
 // Creo que funciona bien
 // carga la lista completa de elementos, creando $link (con todos los archivos) y seleccionando los datos de los juegos
 function cargar_lista_completa () {
-	return select_datos ($GLOBALS['connect_bd']);
+	return select_datos ($GLOBALS['link_bd']);
 }
 
 // Nunca se usó. Se puede borrar si después lo vemos inutil
