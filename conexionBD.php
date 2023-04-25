@@ -6,15 +6,44 @@ $user_name = Constants::USER_NAME;
 $password = Constants::PASSWORD;
 $data_base = Constants::DATA_BASE;
 $link_bd = mysqli_connect ($host_name, $user_name , $password, $data_base) or die ('Error'. mysqli_error ($link_bd));
-function select_datos ($link, $seccion = 'juegos') {
-	$query = mysqli_query($link, "SELECT * FROM $seccion"); // de link tomo todos los query, que cargados modularmente serían options
-	if ($query) { 
-		return $query; // mejor lo saco y afuera hago lo que quiera. No se me debe olvidar poner el mysqli_free_result($query);
-	} else { // sino
-    	die('Query Invalido: ' . mysqli_error() . '\n'); // dice que el query está inválido porque probablemente esté vacío
-	}
+function getByIdGenero ($id){
+	$query="SELECT * FROM generos WHERE ID = ". $id;
+	$result = mysqli_query($GLOBALS['link_bd'], $query);
+	if ($result)
+		return mysqli_fetch_assoc($result);
+	else
+		die('Query Invalido: ' . mysqli_error() . '\n');
 }
-function cargar_barras_de_busqueda_header () {
+function getByIdPlataforma ($id){
+	$query="SELECT * FROM plataformas WHERE ID = ". $id;
+	$result = mysqli_query($GLOBALS['link_bd'], $query);
+	if ($result)
+		return mysqli_fetch_assoc($result);
+	else
+		die('Query Invalido: ' . mysqli_error() . '\n');
+}
+function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma){
+	$query="SELECT * FROM juegos j JOIN generos g ON j.id_genero = g.id JOIN plataformas p ON j.id_plataforma = p.id ";
+	$query_where="WHERE j.nombre like '%".$nombre."%' AND g.id = ".$genero." AND p.id = ".$plataforma;
+	if (empty($nombre))
+		$query_where="WHERE j.nombre = '' AND g.id = ".$genero." AND p.id = ".$plataforma;
+	$query_order=" ORDER BY j.nombre";
+	$result = mysqli_query($GLOBALS['link_bd'], $query.$query_where.$query_order);
+	if ($result)
+        return $result;
+	else
+		die('Query Invalido: ' . mysqli_error() . '\n');
+	return null;
+}
+
+function select_datos ($link, $seccion = 'juegos') {
+	$query = mysqli_query($link, "SELECT * FROM $seccion");
+	if ($query)
+		return $query; // mejor lo saco y afuera hago lo que quiera. No se me debe olvidar poner el mysqli_free_result($query);
+	else
+    	die('Query Invalido: ' . mysqli_error() . '\n');
+}
+function updateHeader () {
 	if ($GLOBALS['link_bd']) return $GLOBALS['link_bd'];
 }
 
