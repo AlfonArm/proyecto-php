@@ -1,6 +1,6 @@
 <?php
 
-function cargar_gen_y_plat ($link) {
+function cargar_plataformas ($link) {
 mysqli_query($link, "INSERT INTO `plataformas`(`id`, `nombre`) VALUES 
 (1, 'Ninguna asignada'),
 (2, 'PS5'),
@@ -25,7 +25,9 @@ mysqli_query($link, "INSERT INTO `plataformas`(`id`, `nombre`) VALUES
 (21, 'Xbox'),
 (22, 'Atari 2000'),
 (23, 'PC')");
-
+}
+    
+function cargar_generos ($link) {
 mysqli_query($link, "INSERT INTO `generos`(`id`, `nombre`) VALUES
     (1, 'No asignado'),
     (2, '4X'),
