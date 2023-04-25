@@ -14,7 +14,6 @@ if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirm
     require_once "conexionBD.php";
     mysqli_query($link_bd, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
     VALUES ('null','$nombre','$imagen','$tipo_imagen','$descripcion','$url','$id_genero','$id_plataforma')");
-    session_start();
     $_SESSION["mostrar_nombre"] = $nombre;
 }
 header('Location: index.php'); // va a index, donde dice que se ha subido el elemento
