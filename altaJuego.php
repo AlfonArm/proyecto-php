@@ -1,7 +1,6 @@
 <?php
     require_once ("conexionBD.php");
     include_once 'header.php';
-    emptyEntity ();
     // ahora $generos y $plataformas serán compartidos de header, que es quién tiene que cargar eso. Como queda en su entorno, se pueden usar en altaJuego e index
 ?>
 <html>

@@ -1,10 +1,6 @@
 <?php
-    if (empty(session_id())) {// por razones que desconozco esto debe ir acá arriba
-        session_start();
-    }
 	require_once ("conexionBD.php");
-    include_once 'header.php';
-    emptyEntity();
+    include_once ('header.php');
     // lo mismo: $link se genera en header. Así mismo se generan las opciones del header
 
     if (isset($_GET["buscar"])) { // si hay solicitud, la acepta
@@ -26,21 +22,23 @@
                 nombre_ventana = document.getElementById("ventana_confirmacion_juego");
                 if ((nombre_ventana != null) || (nombre_ventana != "")) {
                     document.getElementById("ventana_confirmacion_juego").innerHTML = ("Se subió el juego exitosamente");
-                    document.getElementById("ventana_confirmacion_juego").style.display = "block";
+                    document.getElementById("ventana_confirmacion_juego").style.display = "inline-block";
                 }
             }
         </script>
     </head>
     <body>
         <div class = "lista">
+            <div class = "pre_ventana_confirmacion">
         <?php
             if (isset($_SESSION["mostrar_nombre"])) {
                 $nuevo_juego = $_SESSION["mostrar_nombre"];
-                echo "<p id = 'ventana_confirmacion_juego' class = 'entorno_confirmacion'>$nuevo_juego</p>";
+                echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
                 // acá estaría bueno poner que se quede un par de segundos
                 unset($_SESSION["mostrar_nombre"]);
             }
         ?>
+            </div>
         <script>
             ventana_flotante();
             // aca iría un contador, si tuviera uno eficaz

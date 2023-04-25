@@ -1,5 +1,9 @@
 <?php
     require_once ('conexionBD.php');
+    if (empty(session_id())) {// por razones que desconozco esto debe ir acá arriba
+        session_start();
+    }
+    emptyEntity();
     $link = updateHeader();
     $plataformas = select_datos ($link, "plataformas");
     $generos = select_datos ($link, "generos");
@@ -19,10 +23,8 @@
         <div class = "busqueda_header">
             <form method = "get" action = "index.php" id = "info_busqueda" class = "busqueda_header">
                 <div>
-                    <div class="container">
-                        <input type = "text" name = "nombre" class = "buscador_header" placerholder = "Buscar"><br><br>
-                    </div>
-                    <div class="search"></div>
+                    <label>Buscar:</label>
+                    <input type = "text" name = "nombre" placerholder = "Buscar"><br><br>
                 </div>
                 <div>
                     <label>Género:</label>
@@ -53,9 +55,11 @@
                     </select><br><br>
                 </div>
 	    	    <div>
-		    		<input type = "submit" value = "Buscar" id = "busqueda_juego" name = 'buscar' class = "boton_normal"></input>
+		    		<input type = "submit" value = "Buscar" id = "busqueda_juego" name = "buscar"></input> <!-- era de class boton normal -->
 			    </div>
             </form>
+        </div>
+        <div>
             <button  class = "boton_bonito" onclick = "agregarJuego()" role="button">Agregar</button>
         </div>
     </div>
