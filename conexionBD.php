@@ -67,12 +67,12 @@ function emptyEntity () {
 	$result = mysqli_query($GLOBALS['link_bd'], $gen);
 	require_once (cargar_datos.php);
 	if (!mysqli_num_rows($gen)) {
-		cargar_generos()
+		cargar_generos($GLOBALS['link_bd']);
 	}
 	$plat = "SELECT * FROM plataformas";
 	$result = mysqli_query($GLOBALS['link_bd'], $plat);
 	if (!mysqli_num_rows($plat)) {
-		cargar_plataformas()
+		cargar_plataformas($GLOBALS['link_bd']);
 	}	
 }
 ?>
