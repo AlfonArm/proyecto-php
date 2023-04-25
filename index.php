@@ -10,7 +10,7 @@
 
         $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma);
     } else
-        $lista = cargar_lista_completa();
+        $lista = cargar_lista_completa(); // nunca quedó claro si esta lista también tiene que estar ordenada (?)
 	emptyEntity()
 ?>
 <html>

@@ -37,7 +37,7 @@
                 document.getElementById("return_desc").innerHTML = "Este campo es obligatorio";
                 cont++;
             } else {
-                if (descripcion.lenght > 5) { // esto no anda
+                if (descripcion.length > 255) {
                     document.getElementById("return_desc").innerHTML = "La descripción es muy larga";
                     cont++;
                 }
@@ -46,12 +46,12 @@
                 document.getElementById("url_juego").innerHTML = "Este campo es obligatorio";
                 cont++;
             } else {
-                if (url_juego.lenght > 80) { // por ende esto tampoco
+                if (url_juego.length > 80) {
                     document.getElementById("url_juego").innerHTML = "El enlace es muy largo";
                     cont++;
                 }
             }
-            return (cont == 0); // el resto funciona
+            return (cont == 0);
         }
     </script>
 </head>

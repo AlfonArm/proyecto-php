@@ -62,6 +62,7 @@ function insert() {
 	// valor debería ser la variable de los datos recopilados post-formulario.
 }
 
+// RESUMEN: comprueba si faltan géneros y plataformas. La página funciona de forma deficiente sin estos módulos, por lo que se debe priorizar su carga.
 function emptyEntity () {
 	$gen = "SELECT * FROM generos";
 	$result = mysqli_query($GLOBALS['link_bd'], $gen);
