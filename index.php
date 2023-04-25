@@ -3,15 +3,13 @@
     include_once ('header.php');
     // lo mismo: $link se genera en header. Así mismo se generan las opciones del header
 
-    if (isset($_GET["buscar"])) { // si hay solicitud, la acepta
-	    // al parecer no es necesario limpiar $lista porque el cambio de instancia lo limpia por sí solo
+    if (isset($_GET["buscar"])) { // se elige la opcion buscar
         $nombre = $_GET["nombre"];
         $genero = $_GET["genero"];
         $plataforma = $_GET["plataforma"];
-
         $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma); 
     } else
-        $lista = cargar_lista_completa(); // nunca quedó claro si esta lista también tiene que estar ordenada (?)
+        $lista = getAllJuegosOrderByNombre();
 ?>
 <html>
     <head>
@@ -46,7 +44,7 @@
             // se llama una vez se haya subido la session. De esta forma accedo al dato con JS, dejando que repose sobre HTML primero
         </script>
         <?php
-            if ($lista) {
+            if (mysqli_num_rows($lista) > 0) {
                 while ($juego=mysqli_fetch_array($lista)){
                     $juego_nombre = $juego["nombre"];
                     $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
