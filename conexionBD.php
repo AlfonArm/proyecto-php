@@ -61,4 +61,18 @@ function insert() {
 	printf("Id del registro creado %d\n", mysqli_insert_id($link));
 	// valor debería ser la variable de los datos recopilados post-formulario.
 }
+
+function emptyEntity () {
+	$gen = "SELECT * FROM generos";
+	$result = mysqli_query($GLOBALS['link_bd'], $gen);
+	require_once (cargar_datos.php);
+	if (!mysqli_num_rows($gen)) {
+		cargar_generos()
+	}
+	$plat = "SELECT * FROM plataformas";
+	$result = mysqli_query($GLOBALS['link_bd'], $plat);
+	if (!mysqli_num_rows($plat)) {
+		cargar_plataformas()
+	}	
+}
 ?>
