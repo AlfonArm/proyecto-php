@@ -11,9 +11,7 @@
         $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma);
     } else
         $lista = cargar_lista_completa();
-
-    $generos = select_datos ($link, "generos");
-	$plataformas = select_datos ($link, "plataformas");
+	emptyEntity()
 ?>
 <html>
     <head>
@@ -32,7 +30,8 @@
         <?php include_once 'header.php'; ?>
         <div class = "lista">
         <?php
-	    require("subir.php");
+	    if (empty(session_id())) // debe pasar por index para que haya sesión. No se pueden subir juegos sin pasar por acá
+		    session_start();
             if (isset($_SESSION["mostrar_nombre"])) { // nop, no lo acepta
                 $nuevo_juego = $_SESSION["mostrar_nombre"];
                 echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
