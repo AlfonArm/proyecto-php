@@ -1,6 +1,6 @@
 <?php
     require_once ("conexionBD.php");
-	$link = cargar_barras_de_busqueda_header ();
+	$link = updateHeader();
     $lista = cargar_lista_completa(); // la lista completa va a ser necesaria para poner algo en una primera instancia. Luego se podrán hacer búsquedas específicas
     $generos = select_datos ($link, "generos");
 	$plataformas = select_datos ($link, "plataformas");
