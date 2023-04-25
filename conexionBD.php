@@ -6,6 +6,7 @@ $user_name = Constants::USER_NAME;
 $password = Constants::PASSWORD;
 $data_base = Constants::DATA_BASE;
 $link_bd = mysqli_connect ($host_name, $user_name , $password, $data_base) or die ('Error'. mysqli_error ($link_bd));
+
 function getByIdGenero ($id){
 	$query="SELECT * FROM generos WHERE ID = ". $id;
 	$result = mysqli_query($GLOBALS['link_bd'], $query);
@@ -14,6 +15,7 @@ function getByIdGenero ($id){
 	else
 		die('Query Invalido: ' . mysqli_error() . '\n');
 }
+
 function getByIdPlataforma ($id){
 	$query="SELECT * FROM plataformas WHERE ID = ". $id;
 	$result = mysqli_query($GLOBALS['link_bd'], $query);
@@ -22,6 +24,7 @@ function getByIdPlataforma ($id){
 	else
 		die('Query Invalido: ' . mysqli_error() . '\n');
 }
+
 function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma){
 	$query="SELECT * FROM juegos j JOIN generos g ON j.id_genero = g.id JOIN plataformas p ON j.id_plataforma = p.id ";
 	$query_where="WHERE j.nombre like '%".$nombre."%' AND g.id = ".$genero." AND p.id = ".$plataforma;
@@ -43,6 +46,7 @@ function select_datos ($link, $seccion = 'juegos') {
 	else
     	die('Query Invalido: ' . mysqli_error() . '\n');
 }
+
 function updateHeader () {
 	if ($GLOBALS['link_bd']) return $GLOBALS['link_bd'];
 }
@@ -66,13 +70,13 @@ function insert() {
 function emptyEntity () {
 	$gen = "SELECT * FROM generos";
 	$result = mysqli_query($GLOBALS['link_bd'], $gen);
-	require_once (cargar_datos.php);
-	if (!mysqli_num_rows($gen)) {
+	require_once ('cargar_datos.php');
+	if (mysqli_num_rows($result) == 0) {
 		cargar_generos($GLOBALS['link_bd']);
 	}
 	$plat = "SELECT * FROM plataformas";
 	$result = mysqli_query($GLOBALS['link_bd'], $plat);
-	if (!mysqli_num_rows($plat)) {
+	if (mysqli_num_rows($result) == 0) {
 		cargar_plataformas($GLOBALS['link_bd']);
 	}	
 }

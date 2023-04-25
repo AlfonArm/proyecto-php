@@ -1,6 +1,11 @@
 <?php
+    if (empty(session_id())) {// por razones que desconozco esto debe ir acá arriba
+        session_start();
+    }
 	require_once ("conexionBD.php");
-	$link = updateHeader();
+    include_once 'header.php';
+    emptyEntity();
+    // lo mismo: $link se genera en header. Así mismo se generan las opciones del header
 
     if (isset($_GET["buscar"])) { // si hay solicitud, la acepta
 	    // al parecer no es necesario limpiar $lista porque el cambio de instancia lo limpia por sí solo
@@ -8,36 +13,41 @@
         $genero = $_GET["genero"];
         $plataforma = $_GET["plataforma"];
 
-        $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma);
+        $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma); 
     } else
         $lista = cargar_lista_completa(); // nunca quedó claro si esta lista también tiene que estar ordenada (?)
-	emptyEntity()
 ?>
 <html>
     <head>
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <title>Gamepedia - inicio</title>
         <script>
-            /*
-            nombre_ventana = document.getElementById("ventana_confirmacion_juego");
-            if ((nombre_ventana != null) || (nombre_ventana != "")) {
-                // mostrar una ventana flotante
+            function ventana_flotante() {
+                nombre_ventana = document.getElementById("ventana_confirmacion_juego");
+                if ((nombre_ventana != null) || (nombre_ventana != "")) {
+                    document.getElementById("ventana_confirmacion_juego").innerHTML = ("Se subió el juego exitosamente");
+                    document.getElementById("ventana_confirmacion_juego").style.display = "block";
+                }
             }
-            */
         </script>
     </head>
     <body>
-        <?php include_once 'header.php'; ?>
         <div class = "lista">
         <?php
-	    if (empty(session_id())) // debe pasar por index para que haya sesión. No se pueden subir juegos sin pasar por acá
-		    session_start();
-            if (isset($_SESSION["mostrar_nombre"])) { // nop, no lo acepta
+            if (isset($_SESSION["mostrar_nombre"])) {
                 $nuevo_juego = $_SESSION["mostrar_nombre"];
-                echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
+                echo "<p id = 'ventana_confirmacion_juego' class = 'entorno_confirmacion'>$nuevo_juego</p>";
                 // acá estaría bueno poner que se quede un par de segundos
                 unset($_SESSION["mostrar_nombre"]);
             }
+        ?>
+        <script>
+            ventana_flotante();
+            // aca iría un contador, si tuviera uno eficaz
+            // document.getElementById("ventana_confirmacion_juego").style.display = "none";
+            // se llama una vez se haya subido la session. De esta forma accedo al dato con JS, dejando que repose sobre HTML primero
+        </script>
+        <?php
             if ($lista) {
                 while ($juego=mysqli_fetch_array($lista)){
                     $juego_nombre = $juego["nombre"];

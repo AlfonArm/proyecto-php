@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+
+
+
+
 .abajo {
 	background-color: black;
 }
@@ -46,7 +51,41 @@ header p {
 
 
 
-/* sip, lo copié de internet */
+/* copiado de inter: */
+
+.entorno_confirmacion { /* no tengo idea de por qué no funciona esto. Mañana le doy un par de vueltas */
+  display: none;
+  margin: auto;
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #27ae60;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
 .boton_bonito {
   margin: auto;
   background-color: #111827;
@@ -86,6 +125,145 @@ header p {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+
+.boton_normal {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.container {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 300px;
+	height: 100px;
+  }
+  .container .search {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 80px;
+	height: 80px;
+	background: crimson;
+	border-radius: 50%;
+	transition: all 1s;
+	z-index: 4;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+  }
+  .container .search:hover {
+	cursor: pointer;
+  }
+  .container .search::before {
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 22px;
+	right: 0;
+	bottom: 0;
+	left: 22px;
+	width: 12px;
+	height: 2px;
+	background: white;
+	transform: rotate(45deg);
+	transition: all 0.5s;
+  }
+  .container .search::after {
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: -5px;
+	right: 0;
+	bottom: 0;
+	left: -5px;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px solid white;
+	transition: all 0.5s;
+  }
+  .container input {
+	font-family: "Inconsolata", monospace;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	outline: none;
+	border: none;
+	background: crimson;
+	color: white;
+	text-shadow: 0 0 10px crimson;
+	padding: 0 80px 0 20px;
+	border-radius: 30px;
+	box-shadow: 0 0 25px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+	transition: all 1s;
+	opacity: 0;
+	z-index: 5;
+	font-weight: bolder;
+	letter-spacing: 0.1em;
+  }
+  .container input:hover {
+	cursor: pointer;
+  }
+  .container input:focus {
+	width: 300px;
+	opacity: 1;
+	cursor: text;
+  }
+  .container input:focus ~ .search {
+	right: -250px;
+	background: #151515;
+	z-index: 6;
+  }
+  .container input:focus ~ .search::before {
+	top: 0;
+	left: 0;
+	width: 25px;
+  }
+  .container input:focus ~ .search::after {
+	top: 0;
+	left: 0;
+	width: 25px;
+	height: 2px;
+	border: none;
+	background: white;
+	border-radius: 0%;
+	transform: rotate(-45deg);
+  }
+  .container input::placeholder {
+	color: white;
+	opacity: 0.5;
+	font-weight: bolder;
+  }
+
+
 
 
 

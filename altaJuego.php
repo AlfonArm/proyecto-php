@@ -1,9 +1,8 @@
 <?php
     require_once ("conexionBD.php");
-	$link = updateHeader();
-    $lista = cargar_lista_completa(); // la lista completa va a ser necesaria para poner algo en una primera instancia. Luego se podrán hacer búsquedas específicas
-    $generos = select_datos ($link, "generos");
-	$plataformas = select_datos ($link, "plataformas");
+    include_once 'header.php';
+    emptyEntity ();
+    // ahora $generos y $plataformas serán compartidos de header, que es quién tiene que cargar eso. Como queda en su entorno, se pueden usar en altaJuego e index
 ?>
 <html>
 <head>
@@ -56,7 +55,6 @@
     </script>
 </head>
 <body>
-    <?php include_once 'header.php'; ?>
     <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php">
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>

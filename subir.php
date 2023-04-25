@@ -3,6 +3,9 @@ if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirm
 	// carga la información luego de que se confirmen los datos	
     // no sé que es esto, pero creo que no es necesario:    $post_data = file_get_contents('php://input');
     // primero vamos a cargar los elementos de manera ordenada:
+    if (empty(session_id())) {// por razones que desconozco esto debe ir acá arriba
+        session_start();
+    }
     $nombre = $_POST["nombre_juego"];
     $imagen = $_POST["imagen"];
     $tipo_imagen = ".jpg";
