@@ -32,8 +32,8 @@
         <?php include_once 'header.php'; ?>
         <div class = "lista">
         <?php
+	    require("subir.php");
             if (isset($_SESSION["mostrar_nombre"])) { // nop, no lo acepta
-                require("subir.php");
                 $nuevo_juego = $_SESSION["mostrar_nombre"];
                 echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
                 // acá estaría bueno poner que se quede un par de segundos
