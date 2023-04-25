@@ -2,91 +2,129 @@
 	background-color: black;
 }
 body {
-	background-color: rgb(133, 146, 158);
+	background-color: #EDEDED;
 	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
 	width: 60px;
-	margin-right: 100px;
-	color:rgb(128, 203, 196);
-	float: right;
+	color: white;
+	padding-top: 10px;
+	margin: auto
 }
 
-p {
-	font-family: Arial, Helvetica, sans-serif;
+header span {
+	background-color: #DC191B;
 }
-.lista {
-	background-color: rgb(93, 173, 226);
-	margin-left: 150px;
-	margin-right: 150px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border-left: 5px solid rgb(128, 203, 196); /* definir un mejor color*/
-	border-right: 5px solid rgb(128, 203, 196);
-	min-height: 100%;
-}
+
 .inicio {
-	background-color: purple;
 	padding-left: 50px;
 	padding-right: 50px;
+	background-color: #0F1618;
 }
-.reducir_img {
-	width: 15%;
-}
+
 header p {
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 	color:rgb(153, 163, 164);
+	margin-block-end: 0em;
+	margin: auto;
+}
+
+.busqueda_header {
+	display: flex;
+	background-color: #DC191B;
 	margin-block-end: 0;
+	padding-left: 10px;
 }
-form {
-	background-color: black;
-	margin-block-end: 0;
+
+.busqueda_header div {
+	padding-top: 20px;
+	font-weight: bold;
+	margin-right: 0;
+	color: white;
 }
-div form {
-	display: flex
-	"width: 400px";
-	float: "left"
+
+
+
+/* sip, lo copié de internet */
+.boton_bonito {
+  margin: auto;
+  background-color: #111827;
+  border: 1px solid transparent;
+  border-radius: .75rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: .75rem 1.2rem;
+  text-align: center;
+  text-decoration: none #6B7280 solid;
+  text-decoration-thickness: auto;
+  transition-duration: .2s;
+  transition-property: background-color,border-color,color,fill,stroke;
+  transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: right;
+
 }
+
+.boton_bonito:hover {
+  background-color: #374151;
+}
+
+.boton_bonito:focus {
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+
+
+.lista {
+	margin-left: 30%;
+	margin-right: 30%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	min-height: 100%;
+}
+
 .bloque_info {
-	display:flex;
+	display: flex;
 	padding: 20px;
-	border:4px solid rgb(36, 113, 163);
-	background-color: rgb(174, 214, 241);
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border: 2px solid #0F1618;
+	background-color: white;
 	margin: 30px;
-	border-radius: 10px;
 }
-.transicion {
-	transition: transform .2s;
-}
-.transicion:hover {
-	transform: scale(2);
-}
-.borde_img {
-	border: 2px solid rgb(244, 208, 63); /* no me gustó mucho este color :P*/
-	border-radius: 10px;
-}
-.bloques_header {
-	float: left
-}
-.barra {
-	padding-top: 10px;
-	padding-bottom: 30px;
-	background-color: black;
-	padding-left: 20%;
-}
+
 .bloques_header label {
 	color: white;
 	margin-left: 10px;
 	margin-right: 10px
 }
-.borde_img .transicion {
-	float: left;
-	border-width: 20px;
-}
+
 .info_right {
-	float: right;
-	margin-left: 50px;
+	margin-left: 5px;
+	text-align: center;
 }
+
+.reducir_img {
+	width: 100%;
+	max-width: 50%;
+}
+
+
+
 footer {
 	padding-top: 10px;
 	padding-bottom: 30px;
@@ -94,31 +132,33 @@ footer {
 	padding-right: 20px;
 }
 footer p {
-	color: rgb(244, 208, 63);
+	color: #DC191B;
 	margin-block-end: 0;
 	margin-block-start: 0;
 }
+
+
+
 .centrar {
 	display: block;
 }
 
-.info_right .bloques_header {
-	margin-right: 50px;
-	padding-right: 50px;
+.inline {
+	display: inline;
 }
 
-header .reducir_img { /*sino el ícono queda un poco grande. Usar este tamaño para definir el ajuste del ícono*/
-	width: 8%;
+.flex {
+	display: flex;
 }
 
 
 
 .cuadro {
-	background-color:rgb(93, 173, 226);
-	border:3px solid rgb(174, 214, 241);
+	background-color:white;
+	border:2px solid #0F1618;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	margin: auto;
-	padding-right: 30px;
-	padding-left: 30px;
 	margin-bottom: 20%;
 	margin-top: 20%;
 	max-width: 900px;
@@ -144,14 +184,6 @@ fieldset input {
 	padding: 20px;
 }
 
-.flex {
-	display: flex;
-}
-
-#ir_a_agregar {
-	margin-left: 95%;
-}
-
 fieldset p, #return_imagen {
 	margin-block-start: 0;
     margin-block-end: 0;
@@ -161,4 +193,16 @@ fieldset p, #return_imagen {
 header select {
 	padding-right: 10px;
 	margin-right: 10px;
+}
+
+.top_form {
+	background-color: #922B21;
+	border-bottom: 2px solid #0F1618;
+}
+
+.top_form p {
+	padding: 25px;
+	color: white;
+	font-weight: bold;
+	margin: auto;
 }

@@ -72,11 +72,6 @@
     <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
     <title>Gamepedia - inicio</title>
     <script>
-        function agregarJuego () {
-            window.location.href = "altaJuego.php"
-        }
-    </script>
-    <script>
         /*
         nombre_ventana = document.getElementById("ventana_confirmacion_juego");
         if ((nombre_ventana != null) || (nombre_ventana != "")) {
@@ -87,11 +82,6 @@
 </head>
 <body>
     <?php include_once 'header.php'; ?>
-    <div>
-        <button  class = "bloques_header" id = "ir_a_agregar" onclick = "agregarJuego()">
-            Agregar
-        </button>
-    </div>
     <div class = "lista">
     <?php
         if (isset($_SESSION["mostrar_nombre"])) { // nop, no lo acepta
@@ -123,7 +113,7 @@
             $juego_plataforma = $plataforma_filtrado["nombre"];
             echo
             "<div class = 'bloque_info' id = 'agregar_juego'>
-                <img src = '$juego_imagen' class = 'reducir_img transicion borde_img'/>
+                <img src = '$juego_imagen' class = 'reducir_img'/>
                 <div class = 'info_right'>
                     <p>$juego_nombre</p>
                     <p>$juego_desc</p>

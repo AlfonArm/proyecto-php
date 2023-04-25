@@ -11,9 +11,8 @@ if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirm
     $id_genero = $_POST["genero_juego"];
     $id_plataforma = $_POST["plataforma"];
     // se carga un elemento con los datos de la subida ordenados para insertar en la BD
-    $link = mysqli_connect('localhost', 'root', '', 'proyecto_php') 
-	or die("Error " . mysqli_error($link));
-    mysqli_query($link, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
+    require_once "conexionBD.php";
+    mysqli_query($link_bd, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
     VALUES ('null','$nombre','$imagen','$tipo_imagen','$descripcion','$url','$id_genero','$id_plataforma')");
     session_start();
     $_SESSION["mostrar_nombre"] = $nombre;

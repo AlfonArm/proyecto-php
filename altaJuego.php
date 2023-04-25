@@ -57,7 +57,10 @@
 </head>
 <body>
     <?php include_once 'header.php'; ?>
-    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php"> <!--Se envían los datos sin tener en cuenta si se cumplen con los requisitos-->
+    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php">
+        <div class = "top_form">
+            <p>Completa el siguiente formulario para subir el juego</p>
+        </div>
         <div class = "flex"> 
             <div class="espacio_form">
                 <fieldset>
