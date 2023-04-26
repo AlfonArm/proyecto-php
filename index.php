@@ -2,7 +2,6 @@
 	require_once ("conexionBD.php");
     include_once ('header.php');
     // lo mismo: $link se genera en header. Así mismo se generan las opciones del header
-
     if (isset($_GET["buscar"])) { // se elige la opcion buscar
         $nombre = $_GET["nombre"];
         $genero = $_GET["genero"];

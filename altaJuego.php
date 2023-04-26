@@ -1,7 +1,8 @@
 <?php
     require_once ("conexionBD.php");
     include_once 'header.php';
-    // ahora $generos y $plataformas serán compartidos de header, que es quién tiene que cargar eso. Como queda en su entorno, se pueden usar en altaJuego e index
+    $plataformas = getAllPlataformasOrderByNombre();
+    $generos = getAllGenerosOrderByNombre();
 ?>
 <html>
 <head>
@@ -76,8 +77,8 @@
                     <legend>Plataforma</legend>
                     <select id = "plataforma" name = "plataforma">
                         <?php
-                            if ($plataformas) {
-                                foreach ($plataformas as $plat) {
+                            if (mysqli_num_rows($plataformas) > 0) {
+                                while ($plat=mysqli_fetch_array($plataformas)){
                                     $nombre_plat = $plat["nombre"];
                                     $id_plat = $plat["id"];
                                     echo "<option value ='$id_plat'>$nombre_plat</option>";
@@ -98,8 +99,8 @@
                     <legend>Género:</legend>
                     <select id = "genero_juego" name = "genero_juego">
                         <?php
-                            if ($generos) {
-                                foreach ($generos as $gen) {
+                            if (mysqli_num_rows($generos) > 0) {
+                                while ($gen=mysqli_fetch_array($generos)){
                                     $nombre_gen = $gen["nombre"];
                                     $id_gen = $gen["id"];
                                     echo "<option value ='$id_gen'>$nombre_gen</option>";
