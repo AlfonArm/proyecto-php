@@ -46,7 +46,7 @@
             if (mysqli_num_rows($lista) > 0) {
                 while ($juego=mysqli_fetch_array($lista)){
                     $juego_nombre = $juego["nombre"];
-                    $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
+                   // $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
                     $juego_desc = $juego["descripcion"];
                     $juego_url = $juego["url"];
                     $genero_filtrado = getByIdGenero ($juego["id_genero"]);

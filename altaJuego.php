@@ -13,11 +13,7 @@
             // pregunté sobre esto en la clase y me dijeron que el return funcionaba correctamente y que debe haber un error a la hora de tomar un valor. De ahí los console.log
             nombre_juego = document.getElementById("nombre_juego").value;
             descripcion = document.getElementById("descripcion").value;
-            plataforma = document.getElementById("plataforma").value;
             url_juego = document.getElementById("url_juego").value;
-            // imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
-            // console.log(imagen) // esto qué?
-            // respecto a la imagen, parece que hoy van a subir contenido. Una vez veamos eso vamos a estar más cómodos
             cont = 0;
             console.log(cont);
             if ((nombre_juego == null) || (nombre_juego == "")) {
@@ -26,10 +22,6 @@
             }
             if (imagen == null) {
                 document.getElementById("return_imagen").innerHTML = "Este campo es obligatorio";
-                cont++;
-            }
-            if (plataforma == 1) {
-                document.getElementById("return_plataforma").innerHTML = "Inserte una opción válida";
                 cont++;
             }
             if ((descripcion == null) || (descripcion == "")) {
@@ -55,7 +47,7 @@
     </script>
 </head>
 <body>
-    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php">
+    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php" enctype="multipart/form-data">
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>
         </div>

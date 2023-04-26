@@ -1,20 +1,18 @@
 <?php
-if (isset($_POST["confirmar"])) { // pregunta: esta operación espera la confirmación del onsubmit? Se realiza el chequeo de JS?
-	// carga la información luego de que se confirmen los datos	
-    // no sé que es esto, pero creo que no es necesario:    $post_data = file_get_contents('php://input');
-    // primero vamos a cargar los elementos de manera ordenada:
-    $nombre = $_POST["nombre_juego"];
-    $imagen = $_POST["imagen"];
-    $tipo_imagen = ".jpg";
-    $descripcion = $_POST["descripcion"];
-    $url = $_POST["url_juego"];
-    $id_genero = $_POST["genero_juego"];
-    $id_plataforma = $_POST["plataforma"];
-    // se carga un elemento con los datos de la subida ordenados para insertar en la BD
-    require_once "conexionBD.php";
-    mysqli_query($link_bd, "INSERT INTO `juegos`(`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`)
-    VALUES ('null','$nombre','$imagen','$tipo_imagen','$descripcion','$url','$id_genero','$id_plataforma')");
-    $_SESSION["mostrar_nombre"] = $nombre;
-}
-header('Location: index.php'); // va a index, donde dice que se ha subido el elemento
+    if (isset($_POST["confirmar"])) {
+        // carga la información luego de que se confirmen los datos
+        // primero vamos a cargar los elementos de manera ordenada:
+        if (isset($_FILES["imagen"]["name"])){
+            require_once "conexionBD.php";
+            $fileType=$_FILES['imagen']['type'];
+            $fileName=$_FILES['imagen']['name'];
+            $fileSize=$_FILES['imagen']['size'];
+            $fileUploaded=fopen($_FILES['imagen']['tmp_name'],'r');
+            $fileBinary=fread($fileUploaded, $fileSize);
+            $fileBinary=cleanFile($fileBinary);
+            insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+            $_SESSION["mostrar_nombre"] = $fileName;
+        }
+    }
+    header('Location: index.php'); // va a index, donde dice que se ha subido el elemento
 ?>
