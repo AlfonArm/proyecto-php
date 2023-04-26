@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `juegos` (
-  `id` int(11) NOT NULL,
+  `id` int auto_increment primary key,
   `nombre` varchar(255) NOT NULL,
   `imagen` text NOT NULL,
   `tipo_imagen` varchar(10) NOT NULL,
@@ -58,23 +58,6 @@ ALTER TABLE `juegos`
   ADD KEY `fk_genero_idx` (`id_genero`),
   ADD KEY `fk_plataforma_idx` (`id_plataforma`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `juegos`
---
-ALTER TABLE `juegos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `juegos`
---
 ALTER TABLE `juegos`
   ADD CONSTRAINT `fk_genero` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_plataforma` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

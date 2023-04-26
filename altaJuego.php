@@ -1,7 +1,8 @@
 <?php
     require_once ("conexionBD.php");
     include_once 'header.php';
-    // ahora $generos y $plataformas serán compartidos de header, que es quién tiene que cargar eso. Como queda en su entorno, se pueden usar en altaJuego e index
+    $plataformas = getAllPlataformasOrderByNombre();
+    $generos = getAllGenerosOrderByNombre();
 ?>
 <html>
 <head>
@@ -12,11 +13,7 @@
             // pregunté sobre esto en la clase y me dijeron que el return funcionaba correctamente y que debe haber un error a la hora de tomar un valor. De ahí los console.log
             nombre_juego = document.getElementById("nombre_juego").value;
             descripcion = document.getElementById("descripcion").value;
-            plataforma = document.getElementById("plataforma").value;
             url_juego = document.getElementById("url_juego").value;
-            // imagen = document.getElementById("imagen").value; // .value copia el elemento? Se necesita mandar en binario
-            // console.log(imagen) // esto qué?
-            // respecto a la imagen, parece que hoy van a subir contenido. Una vez veamos eso vamos a estar más cómodos
             cont = 0;
             console.log(cont);
             if ((nombre_juego == null) || (nombre_juego == "")) {
@@ -25,10 +22,6 @@
             }
             if (imagen == null) {
                 document.getElementById("return_imagen").innerHTML = "Este campo es obligatorio";
-                cont++;
-            }
-            if (plataforma == 1) {
-                document.getElementById("return_plataforma").innerHTML = "Inserte una opción válida";
                 cont++;
             }
             if ((descripcion == null) || (descripcion == "")) {
@@ -54,7 +47,7 @@
     </script>
 </head>
 <body>
-    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php">
+    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php" enctype="multipart/form-data">
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>
         </div>
@@ -76,8 +69,8 @@
                     <legend>Plataforma</legend>
                     <select id = "plataforma" name = "plataforma">
                         <?php
-                            if ($plataformas) {
-                                foreach ($plataformas as $plat) {
+                            if (mysqli_num_rows($plataformas) > 0) {
+                                while ($plat=mysqli_fetch_array($plataformas)){
                                     $nombre_plat = $plat["nombre"];
                                     $id_plat = $plat["id"];
                                     echo "<option value ='$id_plat'>$nombre_plat</option>";
@@ -98,8 +91,8 @@
                     <legend>Género:</legend>
                     <select id = "genero_juego" name = "genero_juego">
                         <?php
-                            if ($generos) {
-                                foreach ($generos as $gen) {
+                            if (mysqli_num_rows($generos) > 0) {
+                                while ($gen=mysqli_fetch_array($generos)){
                                     $nombre_gen = $gen["nombre"];
                                     $id_gen = $gen["id"];
                                     echo "<option value ='$id_gen'>$nombre_gen</option>";
