@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `juegos` (
   `id` int auto_increment primary key,
   `nombre` varchar(255) NOT NULL,
-  `imagen` text NOT NULL,
+  `imagen` mediumblob NOT NULL,
   `tipo_imagen` varchar(10) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `url` varchar(80) NOT NULL,
