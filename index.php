@@ -46,7 +46,7 @@
             if (mysqli_num_rows($lista) > 0) {
                 while ($juego=mysqli_fetch_array($lista)){
                     $juego_nombre = $juego["nombre"];
-                   // $juego_imagen = $juego["tipo_imagen"]; // esto también hay que revisarlo. Ver preguntas
+                    $juego_imagen = base64_encode($juego ['imagen']);
                     $juego_desc = $juego["descripcion"];
                     $juego_url = $juego["url"];
                     $genero_filtrado = getByIdGenero ($juego["id_genero"]);
@@ -55,7 +55,7 @@
                     $juego_plataforma = $plataforma_filtrado["nombre"];
                     echo
                     "<div class = 'bloque_info' id = 'agregar_juego'>
-                        <img src = '$juego_imagen' class = 'reducir_img'/>
+                        <img class='reducir_img' src='data:image/jpg;charset=utf8;base64,".$juego_imagen."'/>
                         <div class = 'info_right'>
                             <p>$juego_nombre</p>
                             <p>$juego_desc</p>
