@@ -14,6 +14,8 @@
             nombre_juego = document.getElementById("nombre_juego").value;
             descripcion = document.getElementById("descripcion").value;
             url_juego = document.getElementById("url_juego").value;
+            imagen = document.getElementById("imagen").value;
+            plataforma = document.getElementById("plataforma").value;
             cont = 0;
             console.log(cont);
             if ((nombre_juego == null) || (nombre_juego == "")) {
@@ -32,6 +34,10 @@
                     document.getElementById("return_desc").innerHTML = "La descripción es muy larga";
                     cont++;
                 }
+            }
+            if (plataforma == 1) {
+                document.getElementById("return_plataforma").innerHTML = "Se debe elegir una opción válida";
+                cont++;
             }
             if ((url_juego == null) || (url_juego == "")) {
                 document.getElementById("url_juego").innerHTML = "Este campo es obligatorio";

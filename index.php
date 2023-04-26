@@ -44,7 +44,7 @@
         </script>
         <?php
             if (mysqli_num_rows($lista) > 0) {
-                while ($juego=mysqli_fetch_array($lista)){
+                while ($juego = mysqli_fetch_array($lista)){
                     $juego_nombre = $juego["nombre"];
                     $juego_imagen = base64_encode($juego ['imagen']);
                     $juego_desc = $juego["descripcion"];

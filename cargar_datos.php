@@ -2,7 +2,7 @@
 
 function cargar_plataformas ($link) {
 mysqli_query($link, "INSERT INTO `plataformas`(`id`, `nombre`) VALUES 
-(1, 'Ninguna asignada'),
+(1, '--Ninguna asignada--'),
 (2, 'PS5'),
 (3, 'PS4'),
 (4, 'PS3'),
@@ -29,7 +29,7 @@ mysqli_query($link, "INSERT INTO `plataformas`(`id`, `nombre`) VALUES
     
 function cargar_generos ($link) {
 mysqli_query($link, "INSERT INTO `generos`(`id`, `nombre`) VALUES
-    (1, 'No asignado'),
+    (1, '--No asignado--'),
     (2, '4X'),
     (3, 'Acción'),
     (4, 'Arcade'),
