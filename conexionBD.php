@@ -1,11 +1,12 @@
 <?php
-    require_once ("constants.php");
 
-    $host_name = Constants::HOST_NAME;
-    $user_name = Constants::USER_NAME;
-    $password = Constants::PASSWORD;
-    $data_base = Constants::DATA_BASE;
-    $link_bd = mysqli_connect ($host_name, $user_name , $password, $data_base) or die ('Error'. mysqli_error ($link_bd));
+    //BD: datos de la conexion
+    define('HOST_NAME', 'localhost');
+    define('USER_NAME','root');
+    define('PASSWORD', 'root');
+    define('DATA_BASE', 'juegos_online');
+
+    $link_bd = mysqli_connect (HOST_NAME, USER_NAME , PASSWORD, DATA_BASE) or die ('Error'. mysqli_error ($link_bd));
     function getByIdGenero ($id){
         $query="SELECT * FROM generos WHERE ID = ". $id;
         $result = mysqli_query($GLOBALS['link_bd'], $query);
@@ -55,11 +56,11 @@
     }
 
     function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma){
-        $query="SELECT * FROM juegos j";
+        $query="SELECT j.nombre, j.imagen, j.descripcion, j.url,j.id_genero, j.id_plataforma FROM juegos j";
         $query_where=" WHERE j.nombre like '%".$nombre."%' OR j.descripcion like '%".$nombre."%' "; 
         if ($genero > 1) {
             $query = $query." JOIN generos g ON j.id_genero = g.id ";
-            $query_where = $query_where." AND j.id = $genero";
+            $query_where = $query_where." AND g.id = $genero";
         }
         if ($plataforma > 1) {
             $query = $query." JOIN plataformas p ON j.id_plataforma = p.id ";

@@ -27,14 +27,13 @@
     <body>
         <div class = "lista">
             <div class = "pre_ventana_confirmacion">
-        <?php
-            if (isset($_SESSION["mostrar_nombre"])) {
-                $nuevo_juego = $_SESSION["mostrar_nombre"];
-                echo "<p id = 'ventana_confirmacion_juego'>$nuevo_juego</p>";
-                // acá estaría bueno poner que se quede un par de segundos
-                unset($_SESSION["mostrar_nombre"]);
-            }
-        ?>
+                <?php
+                    if (isset($_SESSION["mostrar_nombre"])) {
+                        echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+                              <script src='js/functions.js'></script>";
+                        unset($_SESSION["mostrar_nombre"]);
+                    }
+                ?>
             </div>
         <script>
             ventana_flotante();
@@ -75,5 +74,3 @@
         ?>
         </div>
         <?php include_once 'footer.php' ?>
-    </body>
-</html>

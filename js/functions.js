@@ -1,0 +1,1 @@
+swal("Buen trabajo!", "el juego se guardo correctamente!", "success");

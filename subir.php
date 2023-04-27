@@ -11,7 +11,8 @@
             $fileBinary=fread($fileUploaded, $fileSize);
             $fileBinary=cleanFile($fileBinary);
             insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
-            $_SESSION["mostrar_nombre"] = $fileName;
+            session_start();
+            $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
         }
     }
     header('Location: index.php'); // va a index, donde dice que se ha subido el elemento

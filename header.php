@@ -1,8 +1,6 @@
 <?php
     require_once ('conexionBD.php');
-    if (empty(session_id())) {// por razones que desconozco esto debe ir acá arriba
-        session_start();
-    }
+    if(empty(session_id())) session_start();
     emptyEntity();
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
