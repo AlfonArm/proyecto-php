@@ -14,15 +14,6 @@
     <head>
         <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <title>Gamepedia - inicio</title>
-        <script>
-            function ventana_flotante() {
-                nombre_ventana = document.getElementById("ventana_confirmacion_juego");
-                if ((nombre_ventana != null) || (nombre_ventana != "")) {
-                    document.getElementById("ventana_confirmacion_juego").innerHTML = ("Se subió el juego exitosamente");
-                    document.getElementById("ventana_confirmacion_juego").style.display = "inline-block";
-                }
-            }
-        </script>
     </head>
     <body>
         <div class = "lista">
@@ -35,12 +26,6 @@
                     }
                 ?>
             </div>
-        <script>
-            ventana_flotante();
-            // aca iría un contador, si tuviera uno eficaz
-            // document.getElementById("ventana_confirmacion_juego").style.display = "none";
-            // se llama una vez se haya subido la session. De esta forma accedo al dato con JS, dejando que repose sobre HTML primero
-        </script>
         <?php
             if (mysqli_num_rows($lista) > 0) {
                 while ($juego = mysqli_fetch_array($lista)){

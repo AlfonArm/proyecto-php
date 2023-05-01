@@ -1,1 +1,1 @@
-swal("Buen trabajo!", "el juego se guardo correctamente!", "success");
+swal("Buen trabajo!", "El juego se guardo correctamente!", "success");
