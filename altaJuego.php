@@ -21,10 +21,14 @@
             if ((nombre_juego == null) || (nombre_juego == "")) {
                 document.getElementById("return_nombre").innerHTML = "Este campo es obligatorio";
                 cont++;
+            } else {
+                document.getElementById("return_nombre").innerHTML = "";
             }
-            if (imagen == null) {
+            if ((imagen == null) || (imagen.length == 0)) {
                 document.getElementById("return_imagen").innerHTML = "Este campo es obligatorio";
                 cont++;
+            } else {
+                document.getElementById("return_imagen").innerHTML = "";
             }
             if ((descripcion == null) || (descripcion == "")) {
                 document.getElementById("return_desc").innerHTML = "Este campo es obligatorio";
@@ -33,19 +37,25 @@
                 if (descripcion.length > 255) {
                     document.getElementById("return_desc").innerHTML = "La descripción es muy larga";
                     cont++;
+                } else {
+                    document.getElementById("return_desc").innerHTML = "";
                 }
-            }
+            } 
             if (plataforma == 1) {
                 document.getElementById("return_plataforma").innerHTML = "Se debe elegir una opción válida";
                 cont++;
+            } else {
+                document.getElementById("return_plataforma").innerHTML = "";
             }
             if ((url_juego == null) || (url_juego == "")) {
-                document.getElementById("url_juego").innerHTML = "Este campo es obligatorio";
+                document.getElementById("return_direccion").innerHTML = "Este campo es obligatorio";
                 cont++;
             } else {
                 if (url_juego.length > 80) {
-                    document.getElementById("url_juego").innerHTML = "El enlace es muy largo";
+                    document.getElementById("return_direccion").innerHTML = "El enlace es muy largo";
                     cont++;
+                } else {
+                    document.getElementById("return_direccion").innerHTML = "";
                 }
             }
             return (cont == 0);
