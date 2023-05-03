@@ -22,7 +22,7 @@
         <div class = "lista">
             <?php
                 if (isset($_SESSION["mostrar_nombre"])) {
-                    echo '<script>swal("Buen trabajo!", "El juego se guardo correctamente!", "success");</script>';
+                    echo '<script src="js/main.js"></script>';
                     unset($_SESSION["mostrar_nombre"]);
                 }
                 if (mysqli_num_rows($lista) > 0) {
