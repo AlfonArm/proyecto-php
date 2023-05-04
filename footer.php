@@ -3,8 +3,7 @@
                 <p>Año 2023</p> <br>
                 <p>Seminario de lenguajes: PHP, React & API rest</p> <br>
                 <p>Primer módulo</p> <br>
-                <p>Grupo 15</p> <br>
-                <br><br><br> 
+                <p>Grupo 15</p>
         </footer>
 </body>
 </html>

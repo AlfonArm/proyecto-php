@@ -73,9 +73,9 @@
                 <input type = "submit" value = "Buscar" id = "busqueda_juego" name = "buscar">
             </div>
         </form>
+        <button  class = "boton_bonito" onclick = "agregarJuego()" role="button">Agregar</button>
     </div>
     <div>
-        <button  class = "boton_bonito" onclick = "agregarJuego()" role="button">Agregar</button>
     </div>
         <div class = "lista">
             <?php
@@ -83,28 +83,41 @@
                     echo '<script src="js/main.js"></script>';
                     unset($_SESSION["mostrar_nombre"]);
                 }
+                function insertJuego ($juego) {
+                    $juego_nombre = $juego["nombre"];
+                    $juego_imagen = $juego ['imagen'];
+                    $juego_desc = $juego["descripcion"];
+                    $juego_url = $juego["url"];
+                    $genero_filtrado = getByIdGenero ($juego["id_genero"]);
+		            $juego_imagen_formato = $juego["tipo_imagen"];
+                    $juego_genero = $genero_filtrado["nombre"];
+                    $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
+                    $juego_plataforma = $plataforma_filtrado["nombre"];
+                    echo
+                    "<div class = 'bloque_info' id = 'agregar_juego'>
+                        <img class='reducir_img' src='data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'/>
+                        <div class = 'info_right'>
+                            <p class = 'boldeable'>$juego_nombre</p>
+                            <p>$juego_desc</p>
+                            <p>Género: $juego_genero</p>
+                            <p>Plataforma: $juego_plataforma</p>
+                            <p>Página web: $juego_url</p>
+                        </div>
+                     </div>";
+                }
                 if (mysqli_num_rows($lista) > 0) {
                     while ($juego = mysqli_fetch_array($lista)){
-                        $juego_nombre = $juego["nombre"];
-                        $juego_imagen = $juego ['imagen'];
-                        $juego_desc = $juego["descripcion"];
-                        $juego_url = $juego["url"];
-                        $genero_filtrado = getByIdGenero ($juego["id_genero"]);
-			            $juego_imagen_formato = $juego["tipo_imagen"];
-                        $juego_genero = $genero_filtrado["nombre"];
-                        $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
-                        $juego_plataforma = $plataforma_filtrado["nombre"];
-                        echo
-                        "<div class = 'bloque_info' id = 'agregar_juego'>
-                            <img class='reducir_img' src='data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'/>
-                            <div class = 'info_right'>
-                                <p>$juego_nombre</p>
-                                <p>$juego_desc</p>
-                                <p>Género: $juego_genero</p>
-                                <p>Plataforma: $juego_plataforma</p>
-                                <p>Página web: $juego_url</p>
-                            </div>
-                         </div>";
+                        echo "<div class = 'flex justify_center'>";
+                        insertJuego($juego);
+                        if ($juego = mysqli_fetch_array($lista)) {
+                            insertJuego($juego);
+                            if ($juego = mysqli_fetch_array($lista)) {
+                                insertJuego($juego);
+                                if ($juego = mysqli_fetch_array($lista))
+                                    insertJuego($juego);   
+                            }
+                        }
+                    echo "</div>";
                     }
                 } else {
                     echo

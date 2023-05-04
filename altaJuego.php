@@ -32,6 +32,7 @@
     <script src="js/functions.js"></script>
 </head>
 <body>
+    <button  class = "boton_bonito desextremizar" onclick = "volverAIndex()" role="button">Volver</button>
     <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="altaJuego.php" enctype="multipart/form-data">
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>

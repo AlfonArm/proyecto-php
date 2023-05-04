@@ -8,6 +8,9 @@
     function agregarJuego () {
         window.location.href = "altaJuego.php"
     }
+    function volverAIndex () {
+        window.location.href = "index.php"
+    }
 </script>
 <header>
     <div>
@@ -16,6 +19,5 @@
             <h1><span>Game</span>pedia</h1>
             <p>Donde los gamers se unen</p>
         </div>
-
     </div>
 </header>

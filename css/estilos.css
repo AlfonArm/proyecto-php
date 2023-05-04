@@ -46,9 +46,8 @@ header p {
 }
 
 .logo {
-  padding: 10px;
-  padding-bottom: 0;
-  width: 10%;
+  margin-top: 10px;
+  width: 7%;
   float: right;
 }
 
@@ -151,21 +150,24 @@ header p {
 }
 
 .lista {
-	margin-left: 30%;
-	margin-right: 30%;
+  display: block;
+  width: 80%;
+  margin: auto;
+	padding-left: 6%;
+	padding-right: 6%;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	min-height: 100%;
 }
 
 .bloque_info {
-	display: flex;
-	padding: 20px;
+	display: block;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 20%;
 	margin-top: 30px;
 	margin-bottom: 30px;
-	border: 2px solid #0F1618;
 	background-color: white;
-	margin: 30px;
 }
 
 .bloques_header label {
@@ -175,13 +177,14 @@ header p {
 }
 
 .info_right {
-	margin-left: 5px;
+	margin: auto;
 	text-align: center;
 }
 
 .reducir_img {
 	width: 100%;
-	max-width: 50%;
+  margin: auto;
+  border-bottom: 1px solid black;
 }
 
 footer {
@@ -196,6 +199,11 @@ footer p {
 	margin-block-start: 0;
 }
 
+.boldeable {
+  font-weight: bold;
+  width: 100%;
+}
+
 .centrar {
 	display: block;
 }
@@ -208,8 +216,16 @@ footer p {
 	display: flex;
 }
 
+.justify_center {
+  justify-content: center;
+}
+
 .flotar_derecha {
 	float: right;
+}
+
+.desextremizar {
+  margin-right: 40px;
 }
 
 .cuadro {
