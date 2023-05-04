@@ -5,11 +5,13 @@
         if (isset($_FILES["imagen"]["name"])){
             require_once "conexionBD.php";
             $fileType=$_FILES['imagen']['type'];
+/*
             $fileName=$_FILES['imagen']['name'];
             $fileSize=$_FILES['imagen']['size'];
             $fileUploaded=fopen($_FILES['imagen']['tmp_name'],'r');
-            $fileBinary=fread($fileUploaded, $fileSize);
-            $fileBinary=cleanFile($fileBinary);
+*/
+            $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
+            /* $fileBinary=cleanFile($fileBinary); */
             insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
             session_start();
             $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];

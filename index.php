@@ -28,7 +28,7 @@
                 <input type = "text" name = "nombre" placerholder = "Buscar" value="<?php echo $nombreGet ?>"><br><br>
             </div>
             <div>
-                <label>GÃ©nero:</label>
+                <label>Género:</label>
                 <select id = "header_genero" name = "genero">
                     <?php
                     if (mysqli_num_rows($generos) > 0) {
@@ -76,22 +76,23 @@
                 if (mysqli_num_rows($lista) > 0) {
                     while ($juego = mysqli_fetch_array($lista)){
                         $juego_nombre = $juego["nombre"];
-                        $juego_imagen = base64_encode($juego ['imagen']);
+                        $juego_imagen = $juego ['imagen'];
                         $juego_desc = $juego["descripcion"];
                         $juego_url = $juego["url"];
                         $genero_filtrado = getByIdGenero ($juego["id_genero"]);
+			        $juego_imagen_formato = $juego["tipo_imagen"];
                         $juego_genero = $genero_filtrado["nombre"];
                         $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
                         $juego_plataforma = $plataforma_filtrado["nombre"];
                         echo
                         "<div class = 'bloque_info' id = 'agregar_juego'>
-                            <img class='reducir_img' src='data:image/jpg;charset=utf8;base64,".$juego_imagen."'/>
+                            <img class='reducir_img' src='data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'/>
                             <div class = 'info_right'>
                                 <p>$juego_nombre</p>
                                 <p>$juego_desc</p>
-                                <p>GÃ©nero: $juego_genero</p>
+                                <p>Género: $juego_genero</p>
                                 <p>Plataforma: $juego_plataforma</p>
-                                <p>PÃ¡gina web: $juego_url</p>
+                                <p>Página web: $juego_url</p>
                             </div>
                          </div>";
                     }

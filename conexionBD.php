@@ -56,7 +56,7 @@
     }
 
     function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma){
-        $query="SELECT j.nombre, j.imagen, j.descripcion, j.url,j.id_genero, j.id_plataforma FROM juegos j";
+        $query="SELECT j.nombre, j.imagen, j.descripcion, j.url,j.id_genero, j.id_plataforma, j.tipo_imagen FROM juegos j";
         $query_where=" WHERE (j.nombre like '%".$nombre."%' OR j.descripcion like '%".$nombre."%') "; 
         if ($genero > 1) $query_where = $query_where." AND j.id_genero = $genero";
         if ($plataforma > 1) $query_where=$query_where." AND j.id_plataforma = $plataforma";
