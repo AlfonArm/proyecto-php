@@ -3,7 +3,7 @@
     //BD: datos de la conexion
     define('HOST_NAME', 'localhost');
     define('USER_NAME','root');
-    define('PASSWORD', '');
+    define('PASSWORD', 'root');
     define('DATA_BASE', 'juegos_online');
 
     $link_bd = mysqli_connect (HOST_NAME, USER_NAME , PASSWORD, DATA_BASE) or die ('Error'. mysqli_error ($link_bd));
@@ -75,16 +75,17 @@
 
     }
 
-    function insertJuegos($name, $fileBinary, $fileType, $description, $url, $idGenero, $idPlataforma){
+/**
+ * @throws Exception
+ */
+function insertJuegos($name, $fileBinary, $fileType, $description, $url, $idGenero, $idPlataforma){
         $query = "INSERT INTO `juegos`(`nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`) ";
         $query_values = "VALUES ('$name','$fileBinary','$fileType','$description','$url','$idGenero','$idPlataforma')";
         try { 
             mysqli_query($GLOBALS['link_bd'], $query.$query_values);
+        }catch (Exception $e){
+            throw new Exception("Error al persistir en base de datos");
         }
-        finally {
-            return mysqli_errno($GLOBALS['link_bd']);
-        }
-        return mysqli_errno($GLOBALS['link_bd']);
     }
 
     // RESUMEN: comprueba si faltan géneros y plataformas. La página funciona de forma deficiente sin estos módulos, por lo que se debe priorizar su carga.

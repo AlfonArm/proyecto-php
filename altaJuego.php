@@ -3,7 +3,6 @@
     include_once 'header.php';
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
-
     if (isset($_POST["confirmar"])) {
         if (isset($_FILES["imagen"]["name"])){
             try {
@@ -11,24 +10,27 @@
                 $fileSize=$_FILES['imagen']['size'];
                 if (($fileSize < 41943040)&&($_POST["genero_juego"] != "not_valid")&&($_POST["plataforma"] != "not_valid")) {
                     $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
-                    $uploaded = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+                    insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
                     if (empty(session_id())) session_start();
-                    if ($uploaded) throw new Exception("Error Processing Request", 1);
                     $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
                     header('Location: index.php');
-                }
+                }else
+                    throw new Exception("El tamaño de la imagen excede lo permitido");
             }
-            catch (Exception $return_error) {
-                $_SESSION["error"] = $return_error;
+            catch (Exception $exception_error) {
+                $_SESSION["error"] = $exception_error -> getMessage();
                 header('Location: altaJuego.php'); // el problema con esto es que no se debería recargar la página :P
             }
         }
     }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+    <meta charset="utf-8">
     <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
     <title>Subir juego</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/functions.js"></script>
 </head>
 <body>
@@ -37,6 +39,13 @@
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>
         </div>
+        <?php
+        if (isset($_SESSION["error"])) {
+            $exception = $_SESSION["error"];
+            echo "<script>swal('Error!', '$exception', 'error'); </script>";
+            unset($_SESSION["error"]);
+        }
+        ?>
         <div class = "flex"> 
             <div class="espacio_form">
                 <fieldset>
@@ -97,13 +106,6 @@
                 </div>
             </div>
         </div>
-        <?php
-            if (isset($_SESSION["error"])) {
-                $e = $_SESSION["error"];
-                echo "<p id = 'error_de_subida'>Error: $e</p>";
-            }
-            unset($_SESSION["error"]);
-        ?>
         <button type = "submit" id = "confirmar" name = confirmar>Subir</button>
     </form>    
     <?php include_once 'footer.php' ?>
