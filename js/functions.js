@@ -4,6 +4,7 @@ function dio_click () {
     url_juego = document.getElementById("url_juego").value;
     imagen = document.getElementById("imagen").value;
     plataforma = document.getElementById("plataforma").value;
+    genero = document.getElementById("genero_juego").value;
     cont = 0;
     console.log(cont);
     if ((nombre_juego == null) || (nombre_juego == "")) {
@@ -36,7 +37,7 @@ function dio_click () {
             document.getElementById("return_desc").innerHTML = "";
         }
     }
-    if (plataforma == 1) {
+    if (plataforma == "not_valid") {
         document.getElementById("return_plataforma").innerHTML = "Se debe elegir una opción válida";
         cont++;
     } else {
@@ -52,6 +53,12 @@ function dio_click () {
         } else {
             document.getElementById("return_direccion").innerHTML = "";
         }
+    }
+    if (genero == "not_valid") {
+        document.getElementById("return_genero").innerHTML = "Se debe elegir una opción válida";
+        cont++;
+    } else {
+        document.getElementById("return_genero").innerHTML = "";
     }
     return (cont == 0);
 }

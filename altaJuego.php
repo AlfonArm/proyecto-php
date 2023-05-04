@@ -9,7 +9,7 @@
             try {
                 $fileType=$_FILES['imagen']['type'];
                 $fileSize=$_FILES['imagen']['size'];
-                if ($fileSize < 41943040) {
+                if (($fileSize < 41943040)&&($_POST["genero_juego"] != "not_valid")&&($_POST["plataforma"] != "not_valid")) {
                     $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
                     $uploaded = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
                     if (empty(session_id())) session_start();
@@ -53,6 +53,7 @@
                 <fieldset>
                     <legend>Plataforma</legend>
                     <select id = "plataforma" name = "plataforma">
+                        <option selected value = "not_valid">Seleccionar plataforma</option>
                         <?php
                             if (mysqli_num_rows($plataformas) > 0) {
                                 while ($plat=mysqli_fetch_array($plataformas)){
@@ -74,7 +75,8 @@
             <div class="espacio_form">
                 <fieldset>
                     <legend>Género:</legend>
-                    <select id = "genero_juego" name = "genero_juego">
+                    <select id = "genero_juego" name = "genero_juego" id = "genero_juego">
+                        <option selected value = "not_valid">Seleccionar plataforma</option>
                         <?php
                             if (mysqli_num_rows($generos) > 0) {
                                 while ($gen=mysqli_fetch_array($generos)){
@@ -85,6 +87,7 @@
                             }
                         ?>
                     </select>
+                    <p id = "return_genero"></p>
                 </fieldset>
                 <div>
                     <p>Seleccionar imagen</p>

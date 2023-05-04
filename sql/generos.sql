@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `generos` (
 --
 
 INSERT INTO `generos` (`id`, `nombre`) VALUES
-(1, 'No asignado'),
 (2, '4X'),
 (3, 'Acción'),
 (4, 'Arcade'),

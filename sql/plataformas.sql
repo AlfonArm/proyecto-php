@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS `plataformas` (
 --
 
 INSERT INTO `plataformas` (`id`, `nombre`) VALUES
-(1, 'Ninguna asignada'),
 (2, 'PS5'),
 (3, 'PS4'),
 (4, 'PS3'),

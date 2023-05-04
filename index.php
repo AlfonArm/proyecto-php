@@ -31,6 +31,7 @@
             <div>
                 <label>Género:</label>
                 <select id = "header_genero" name = "genero">
+                    <option selected value = "not_valid">Seleccionar género</option>
                     <?php
                     if (mysqli_num_rows($generos) > 0) {
                         while ($gen=mysqli_fetch_array($generos)){
@@ -47,6 +48,7 @@
             <div>
                 <label>Plataforma:</label>
                 <select id = "header_plataforma" name = "plataforma">
+                    <option selected value = "not_valid">Seleccionar plataforma</option>
                     <?php
                     if (mysqli_num_rows($plataformas) > 0) {
                         while ($plat=mysqli_fetch_array($plataformas)){
