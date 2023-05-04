@@ -12,6 +12,7 @@
 <header>
     <div>
         <div class = "inicio">
+            <img src="images/logo.png" class = "logo">
             <h1><span>Game</span>pedia</h1>
             <p>Donde los gamers se unen</p>
         </div>

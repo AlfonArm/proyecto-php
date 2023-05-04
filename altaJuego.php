@@ -3,6 +3,27 @@
     include_once 'header.php';
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
+
+    if (isset($_POST["confirmar"])) {
+        if (isset($_FILES["imagen"]["name"])){
+            try {
+                $fileType=$_FILES['imagen']['type'];
+                $fileSize=$_FILES['imagen']['size'];
+                if ($fileSize < 41943040) {
+                    $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
+                    $uploaded = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+                    if (empty(session_id())) session_start();
+                    if ($uploaded) throw new Exception("Error Processing Request", 1);
+                    $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
+                    header('Location: index.php');
+                }
+            }
+            catch (Exception $return_error) {
+                $_SESSION["error"] = $return_error;
+                header('Location: altaJuego.php'); // el problema con esto es que no se debería recargar la página :P
+            }
+        }
+    }
 ?>
 <html>
 <head>
@@ -11,7 +32,7 @@
     <script src="js/functions.js"></script>
 </head>
 <body>
-    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="subir.php" enctype="multipart/form-data">
+    <form class="cuadro" onsubmit = "return dio_click()" method = "post" action="altaJuego.php" enctype="multipart/form-data">
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>
         </div>
@@ -72,6 +93,13 @@
                 </div>
             </div>
         </div>
+        <?php
+            if (isset($_SESSION["error"])) {
+                $e = $_SESSION["error"];
+                echo "<p id = 'error_de_subida'>Error: $e</p>";
+            }
+            unset($_SESSION["error"]);
+        ?>
         <button type = "submit" id = "confirmar" name = confirmar>Subir</button>
     </form>    
     <?php include_once 'footer.php' ?>

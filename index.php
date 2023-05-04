@@ -8,7 +8,8 @@
         $nombreGet = $_GET["nombre"];
         $generoGet = $_GET["genero"];
         $plataformaGet = $_GET["plataforma"];
-        $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombreGet, $generoGet, $plataformaGet);
+        $orden = $_GET["orden"];
+        $lista = getByNombreAndGeneroAndPlataformaOrderByNombre($nombreGet, $generoGet, $plataformaGet, $orden);
     } else
         $lista = getAllJuegosOrderByNombre();
 ?>
@@ -25,10 +26,10 @@
         <form method = "get" action = "index.php" id = "info_busqueda" class = "busqueda_header">
             <div>
                 <label>Buscar:</label>
-                <input type = "text" name = "nombre" placerholder = "Buscar" value="<?php echo $nombreGet ?>"><br><br>
+                <input type = "text" name = "nombre" placerholder = "Nombre del juego" value="<?php echo $nombreGet ?>"><br><br>
             </div>
             <div>
-                <label>Género:</label>
+                <label>GÃ©nero:</label>
                 <select id = "header_genero" name = "genero">
                     <?php
                     if (mysqli_num_rows($generos) > 0) {
@@ -60,6 +61,13 @@
                 </select><br><br>
             </div>
             <div>
+                <label>Orden:</label>
+                <select id = "header_orden" name = "orden">
+                    <option selected value = '1'>Ascendente</option>
+                    <option value = '2'>Descendente</option>
+                </select>
+            </div>
+            <div>
                 <input type = "submit" value = "Buscar" id = "busqueda_juego" name = "buscar">
             </div>
         </form>
@@ -80,7 +88,7 @@
                         $juego_desc = $juego["descripcion"];
                         $juego_url = $juego["url"];
                         $genero_filtrado = getByIdGenero ($juego["id_genero"]);
-			        $juego_imagen_formato = $juego["tipo_imagen"];
+			            $juego_imagen_formato = $juego["tipo_imagen"];
                         $juego_genero = $genero_filtrado["nombre"];
                         $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
                         $juego_plataforma = $plataforma_filtrado["nombre"];
@@ -90,9 +98,9 @@
                             <div class = 'info_right'>
                                 <p>$juego_nombre</p>
                                 <p>$juego_desc</p>
-                                <p>Género: $juego_genero</p>
+                                <p>GÃ©nero: $juego_genero</p>
                                 <p>Plataforma: $juego_plataforma</p>
-                                <p>Página web: $juego_url</p>
+                                <p>PÃ¡gina web: $juego_url</p>
                             </div>
                          </div>";
                     }

@@ -7,6 +7,7 @@
     define('DATA_BASE', 'juegos_online');
 
     $link_bd = mysqli_connect (HOST_NAME, USER_NAME , PASSWORD, DATA_BASE) or die ('Error'. mysqli_error ($link_bd));
+    
     function getByIdGenero ($id){
         $query="SELECT * FROM generos WHERE ID = ". $id;
         $result = mysqli_query($GLOBALS['link_bd'], $query);
@@ -55,12 +56,16 @@
         return null;
     }
 
-    function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma){
+    function getByNombreAndGeneroAndPlataformaOrderByNombre($nombre, $genero, $plataforma, $orden){
         $query="SELECT j.nombre, j.imagen, j.descripcion, j.url,j.id_genero, j.id_plataforma, j.tipo_imagen FROM juegos j";
         $query_where=" WHERE (j.nombre like '%".$nombre."%' OR j.descripcion like '%".$nombre."%') "; 
         if ($genero > 1) $query_where = $query_where." AND j.id_genero = $genero";
         if ($plataforma > 1) $query_where=$query_where." AND j.id_plataforma = $plataforma";
-        $query_order=" ORDER BY j.nombre";
+        if ($orden == 1) {
+            $query_order=" ORDER BY j.nombre ASC";
+        } else {
+            $query_order=" ORDER BY j.nombre DESC";
+        }
         $result = mysqli_query($GLOBALS['link_bd'], $query.$query_where.$query_order);
         if ($result)
             return $result;
@@ -70,14 +75,16 @@
 
     }
 
-    function cleanFile($fileBinary){
-        return mysqli_escape_string($GLOBALS['link_bd'], $fileBinary);
-    }
-
     function insertJuegos($name, $fileBinary, $fileType, $description, $url, $idGenero, $idPlataforma){
         $query = "INSERT INTO `juegos`(`nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`) ";
         $query_values = "VALUES ('$name','$fileBinary','$fileType','$description','$url','$idGenero','$idPlataforma')";
-        mysqli_query($GLOBALS['link_bd'], $query.$query_values);
+        try { 
+            mysqli_query($GLOBALS['link_bd'], $query.$query_values);
+        }
+        finally {
+            return mysqli_errno($GLOBALS['link_bd']);
+        }
+        return mysqli_errno($GLOBALS['link_bd']);
     }
 
     // RESUMEN: comprueba si faltan géneros y plataformas. La página funciona de forma deficiente sin estos módulos, por lo que se debe priorizar su carga.

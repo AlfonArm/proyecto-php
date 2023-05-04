@@ -21,10 +21,10 @@ header span {
 	padding-left: 50px;
 	padding-right: 50px;
 	background-color: #0F1618;
+  padding-bottom: 35px;
 }
 
 header p {
-	padding-bottom: 20px;
 	color:rgb(153, 163, 164);
 	margin-block-end: 0em;
 	margin: auto;
@@ -43,6 +43,13 @@ header p {
 	margin-right: 0;
 	color: white;
 	padding-right: 20px;
+}
+
+.logo {
+  padding: 10px;
+  padding-bottom: 0;
+  width: 10%;
+  float: right;
 }
 
 /* esta es la ventana que salta cuando se sube un juego. Mi idea es que cuando des click se vaya. Eso se hace con js igual */
@@ -184,7 +191,7 @@ footer {
 	padding-right: 20px;
 }
 footer p {
-	color: #DC191B;
+	color: white;
 	margin-block-end: 0;
 	margin-block-start: 0;
 }
@@ -211,8 +218,8 @@ footer p {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	margin: auto;
-	margin-bottom: 20%;
-	margin-top: 20%;
+	margin-bottom: 5%;
+	margin-top: 5%;
 	max-width: 900px;
 }
 
@@ -236,9 +243,12 @@ fieldset input {
 	padding: 20px;
 }
 
-fieldset p, #return_imagen {
+#error_de_subida {
+  margin: 20px;
+}
+fieldset p, #return_imagen, #error_de_subida {
 	margin-block-start: 0;
-    margin-block-end: 0;
+  margin-block-end: 0;
 	color: rgb(255, 58, 58)
 }
 
