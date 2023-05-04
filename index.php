@@ -121,10 +121,12 @@
                     }
                 } else {
                     echo
-                    "<div class = 'bloque_info centrar'>
-                     <img src = 'images/not_found.png' class = 'reducir_img centrar'/>
-                     <p class = 'centrar'>No se han encontrado resultados</p>
-                     </div>";
+                    "<div class = 'flex justify_center'>
+                        <div>
+                            <img src = 'images/not_found.png' id = 'not_found'/>
+                            <p>No se han encontrado resultados</p>
+                        </div>
+                    </div>";
                 }
             ?>
         </div>
