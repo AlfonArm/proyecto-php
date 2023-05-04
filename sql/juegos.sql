@@ -46,10 +46,6 @@ CREATE TABLE IF NOT EXISTS `juegos` (
 -- Volcado de datos para la tabla `juegos`
 --
 
-INSERT INTO `juegos` (`id`, `nombre`, `imagen`, `tipo_imagen`, `descripcion`, `url`, `id_genero`, `id_plataforma`) VALUES
-(1, 'Holaa', '', '.jpg', 'Es un saludo', 'https://hola.com', 13, 16),
-(2, 'Mario Odyssey', 'sandro-botticelli-carte-de-lenfer.jpeg', '.jpg', 'Super Mario Odyssey es un videojuego de plataformas en tres dimensiones para Nintendo Switch desarrollado y publicado por Nintendo que se lanzó el 27 de octubre de 2017.', 'https://www.nintendo.com/es-ar/store/products/super-mario-odyssey-switch/', 56, 9);
-
 --
 -- Filtros para la tabla `juegos`
 --
