@@ -51,39 +51,6 @@ header p {
   float: right;
 }
 
-/* esta es la ventana que salta cuando se sube un juego. Mi idea es que cuando des click se vaya. Eso se hace con js igual */
-#ventana_confirmacion_juego {
-  display: none;
-  margin: auto;
-  appearance: none;
-  backface-visibility: hidden;
-  background-color: #27ae60;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: normal;
-  line-height: 1.5;
-  outline: none;
-  overflow: hidden;
-  padding: 13px 20px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transform: translate3d(0, 0, 0);
-  transition: all .3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
 /* Este es el botón que te lleva al altajuego */
 .boton_bonito {
   max-width: 120px;
@@ -124,29 +91,6 @@ header p {
   box-shadow: none;
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.boton_normal {
-  background-color: rgba(51, 51, 51, 0.2);
-  border-radius: 8px;
-  border-width: 0;
-  color: #333333;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 10px 12px;
-  text-align: center;
-  transition: all 200ms;
-  vertical-align: baseline;
-  white-space: nowrap;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 }
 
 .lista {
@@ -210,10 +154,6 @@ footer p {
 
 .centrar {
 	display: block;
-}
-
-.inline {
-	display: inline;
 }
 
 .flex {

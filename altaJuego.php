@@ -101,13 +101,13 @@
                 </div>
             </div>
         </div>
-        <?php
-            if (isset($_SESSION["error"])) {
-                $e = $_SESSION["error"];
-                echo "<p id = 'error_de_subida'>Error: $e</p>";
-                unset($_SESSION["error"]);
-            }
-        ?>
         <button type = "submit" id = "confirmar" name = confirmar>Subir</button>
-    </form>    
+    </form>
+    <?php
+        if (isset($_SESSION["error"])) {
+            $exception = $_SESSION["error"];
+            echo "<script>swal('Error!', '$exception', 'error'); </script>";
+            unset($_SESSION["error"]);
+        }
+    ?>
     <?php include_once 'footer.php' ?>
