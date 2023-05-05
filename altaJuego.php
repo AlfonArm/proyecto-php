@@ -1,8 +1,10 @@
 <?php
     require_once ("conexionBD.php");
     include_once 'header.php';
+
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
+
     if (isset($_POST["confirmar"])) {
         if (isset($_FILES["imagen"]["name"])){
             try {
@@ -14,12 +16,12 @@
                     if (empty(session_id())) session_start();
                     $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
                     header('Location: index.php');
-                }else
+                } else
                     throw new Exception("El tamaño de la imagen excede lo permitido");
             }
             catch (Exception $exception_error) {
                 $_SESSION["error"] = $exception_error -> getMessage();
-                header('Location: altaJuego.php'); // el problema con esto es que no se debería recargar la página :P
+                echo "<script>history.go(-1);</script>";
             }
         }
     }
@@ -39,13 +41,6 @@
         <div class = "top_form">
             <p>Completa el siguiente formulario para subir el juego</p>
         </div>
-        <?php
-        if (isset($_SESSION["error"])) {
-            $exception = $_SESSION["error"];
-            echo "<script>swal('Error!', '$exception', 'error'); </script>";
-            unset($_SESSION["error"]);
-        }
-        ?>
         <div class = "flex"> 
             <div class="espacio_form">
                 <fieldset>
@@ -106,6 +101,13 @@
                 </div>
             </div>
         </div>
+        <?php
+            if (isset($_SESSION["error"])) {
+                $e = $_SESSION["error"];
+                echo "<p id = 'error_de_subida'>Error: $e</p>";
+                unset($_SESSION["error"]);
+            }
+        ?>
         <button type = "submit" id = "confirmar" name = confirmar>Subir</button>
     </form>    
     <?php include_once 'footer.php' ?>

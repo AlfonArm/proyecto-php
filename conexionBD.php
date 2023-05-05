@@ -3,7 +3,7 @@
     //BD: datos de la conexion
     define('HOST_NAME', 'localhost');
     define('USER_NAME','root');
-    define('PASSWORD', 'root');
+    define('PASSWORD', '');
     define('DATA_BASE', 'juegos_online');
 
     $link_bd = mysqli_connect (HOST_NAME, USER_NAME , PASSWORD, DATA_BASE) or die ('Error'. mysqli_error ($link_bd));
