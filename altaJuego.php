@@ -12,7 +12,8 @@
                 $fileSize=$_FILES['imagen']['size'];
                 if (($fileSize < 41943040)&&($_POST["genero_juego"] != "not_valid")&&($_POST["plataforma"] != "not_valid")) {
                     $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
-                    insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+                    $error = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+                    if $error throw new Exception($error);
                     if (empty(session_id())) session_start();
                     $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
                     header('Location: index.php');
