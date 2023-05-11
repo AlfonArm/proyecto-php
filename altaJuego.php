@@ -5,6 +5,16 @@
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
 
+    function checkSession ($DataName) {
+        if (isset($_SESSION[$dataName])) {
+            $data = $_SESSION[$dataName];
+            unset($_SESSION[$dataName]);
+        } else {
+            $data = "";
+        }
+        return $data;
+    }
+
     if (isset($_POST["confirmar"])) {
         if (isset($_FILES["imagen"]["name"])){
             try {
@@ -22,7 +32,12 @@
             }
             catch (Exception $exception_error) {
                 $_SESSION["error"] = $exception_error -> getMessage();
-                echo "<script>history.go(-1);</script>";
+                $_SESSION["error_nombre"] = $_POST["nombre_juego"];
+                $_SESSION["error_genero"] = $_POST["genero_juego"];
+                $_SESSION["error_plataforma"] = $_POST["plataforma"];
+                $_SESSION["error_descripcion"] = $_POST["descripcion"];
+                $_SESSION["error_url"] = $_POST["url_juego"];
+                header('Location: altaJuego.php')
             }
         }
     }
@@ -46,12 +61,12 @@
             <div class="espacio_form">
                 <fieldset>
                     <legend>Nombre</legend>
-                    <input placeholder="Nombre del juego" id = "nombre_juego" name = "nombre_juego">
+                    <input placeholder="Nombre del juego" id = "nombre_juego" name = "nombre_juego" value = '<?php checkSession("error_nombre"); ?>'>
                     <p id = "return_nombre"></p>
                 </fieldset>
                 <fieldset>
                     <legend>Descripción</legend>
-                    <textarea placeholder = "Hasta 255 caracteres" class = "texto_grande" id = "descripcion" name = "descripcion"></textarea>
+                    <textarea placeholder = "Hasta 255 caracteres" class = "texto_grande" id = "descripcion" name = "descripcion" value = '<?php checkSession("error_descripcion"); ?>'></textarea>
                     <p id = "return_desc"></p>
                 </fieldset>
             </div>
@@ -59,14 +74,17 @@
                 <fieldset>
                     <legend>Plataforma</legend>
                     <select id = "plataforma" name = "plataforma">
-                        <option selected value = "not_valid">Seleccionar plataforma</option>
+                        <?php
+                            $aux_plat_error = checkSession ("error_plataforma");
+                        ?>
+                        <option <?php if ($aux_plat_error == "") { ?> selected <?php } ?> value = "not_valid">Seleccionar plataforma</option>
                         <?php
                             if (mysqli_num_rows($plataformas) > 0) {
                                 while ($plat=mysqli_fetch_array($plataformas)){
                                     $nombre_plat = $plat["nombre"];
                                     $id_plat = $plat["id"];
                         ?>
-                                    <option value ='<?php echo $id_plat; ?>'><?php echo $nombre_plat; ?></option>
+                                    <option <?php if ($id_plat == $aux_plat_error) { ?> selected <?php } ?> value ='<?php echo $id_plat; ?>'><?php echo $nombre_plat; ?></option>
                         <?php
                                 }
                             }
@@ -76,7 +94,7 @@
                 </fieldset>
                 <fieldset>
                     <legend>Dirección</legend>
-                    <input type="url" placeholder="Máximo 80 caracteres" id = "url_juego" name = "url_juego">
+                    <input type="url" placeholder="Máximo 80 caracteres" id = "url_juego" name = "url_juego" value = '<?php checkSession("error_url"); ?>'>
                     <p id = "return_direccion"></p>
                 </fieldset>
             </div>
@@ -84,14 +102,17 @@
                 <fieldset>
                     <legend>Género:</legend>
                     <select id = "genero_juego" name = "genero_juego" id = "genero_juego">
-                        <option selected value = "not_valid">Seleccionar plataforma</option>
+                        <?php
+                            $aux_gen_error = checkSession ("error_genero");
+                        ?>
+                        <option <?php if ($aux_gen_error == "") { ?> selected <?php } ?> value = "not_valid">Seleccionar plataforma</option>
                         <?php
                             if (mysqli_num_rows($generos) > 0) {
                                 while ($gen=mysqli_fetch_array($generos)){
                                     $nombre_gen = $gen["nombre"];
                                     $id_gen = $gen["id"];
                         ?>
-                                    <option value ='<?php echo $id_gen ?>'><?php echo $nombre_gen; ?></option>
+                                    <option <?php if ($id_gen == $aux_gen_error) { ?> selected <?php } ?> value ='<?php echo $id_gen ?>'><?php echo $nombre_gen; ?></option>
                         <?php
                                 }
                             }
