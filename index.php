@@ -37,9 +37,13 @@
                         while ($gen=mysqli_fetch_array($generos)){
                             $nombre_gen = $gen["nombre"];
                             $id_gen = $gen["id"];
-                            if ($id_gen == $generoGet)
-                                echo "<option selected value ='$id_gen'>$nombre_gen</option>";
-                            else echo "<option value ='$id_gen'>$nombre_gen</option>";
+                            if ($id_gen == $generoGet) {
+                    ?>
+                                <option selected value ='<?php echo $id_gen; ?>'><?php echo $nombre_gen; ?></option>";
+                            <?php } else { ?>
+                                <option value ='<?php echo $id_gen; ?>'><?php echo $nombre_gen; ?></option>";
+                    <?php
+                            }
                         }
                     }
                     ?>
@@ -54,9 +58,13 @@
                         while ($plat=mysqli_fetch_array($plataformas)){
                             $nombre_plat = $plat["nombre"];
                             $id_plat = $plat["id"];
-                            if ($id_plat == $plataformaGet)
-                                echo "<option selected value ='$id_plat'>$nombre_plat</option>";
-                            else echo "<option value ='$id_plat'>$nombre_plat</option>";
+                            if ($id_plat == $plataformaGet) {
+                    ?> 
+                                <option selected value =<?php echo $id_plat; ?>><?php echo $nombre_plat; ?></option>;
+                            <?php } else { ?>
+                                <option value ='<?php echo $id_plat; ?>'><?php echo $nombre_plat; ?></option>;
+                    <?php
+                            }
                         }
                     }
                     ?>
@@ -80,7 +88,9 @@
         <div class = "lista">
             <?php
                 if (isset($_SESSION["mostrar_nombre"])) {
-                    echo '<script src="js/main.js"></script>';
+            ?> 
+                    <script src="js/main.js"></script>;
+            <?php
                     unset($_SESSION["mostrar_nombre"]);
                 }
                 function insertJuego ($juego) {
@@ -93,21 +103,24 @@
                     $juego_genero = $genero_filtrado["nombre"];
                     $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
                     $juego_plataforma = $plataforma_filtrado["nombre"];
-                    echo
-                    "<div class = 'bloque_info' id = 'agregar_juego'>
-                        <img class='reducir_img' src='data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'/>
+            ?>
+                    <div class = 'bloque_info' id = '<?php echo agregar_juego; ?>'>
+                        <img class='reducir_img' src=<?php echo'data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'; ?>/>
                         <div class = 'info_right'>
-                            <p class = 'boldeable'>$juego_nombre</p>
-                            <p>$juego_desc</p>
-                            <p>Género: $juego_genero</p>
-                            <p>Plataforma: $juego_plataforma</p>
-                            <p>Página web: $juego_url</p>
+                            <p class = 'boldeable'><?php echo $juego_nombre; ?></p>
+                            <p><?php echo $juego_desc; ?></p>
+                            <p>Género: <?php echo $juego_genero; ?></p>
+                            <p>Plataforma: <?php echo $juego_plataforma ?></p>
+                            <p>Página web: <?php echo $juego_url ?></p>
                         </div>
-                     </div>";
+                     </div>
+            <?php
                 }
                 if (mysqli_num_rows($lista) > 0) {
                     while ($juego = mysqli_fetch_array($lista)){
-                        echo "<div class = 'flex justify_center'>";
+            ?>
+                        <div class = 'flex justify_center'>
+            <?php
                         insertJuego($juego);
                         if ($juego = mysqli_fetch_array($lista)) {
                             insertJuego($juego);
@@ -117,17 +130,20 @@
                                     insertJuego($juego);   
                             }
                         }
-                    echo "</div>";
+            ?>
+                        </div>
+            <?php
                     }
                 } else {
-                    echo
-                    "<div class = 'flex justify_center'>
+            ?>
+                    <div class = 'flex justify_center'>
                         <div>
                             <img src = 'images/not_found.png' id = 'not_found'/>
                             <p>No se han encontrado resultados</p>
                         </div>
-                    </div>";
-                }
+                    </div>
+            <?php 
+                } 
             ?>
         </div>
         <?php include_once 'footer.php' ?>

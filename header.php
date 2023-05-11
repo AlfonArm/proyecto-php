@@ -4,6 +4,7 @@
     emptyEntity();
 ?>
 
+<html>
 <script>
     function agregarJuego () {
         window.location.href = "altaJuego.php"

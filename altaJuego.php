@@ -65,7 +65,9 @@
                                 while ($plat=mysqli_fetch_array($plataformas)){
                                     $nombre_plat = $plat["nombre"];
                                     $id_plat = $plat["id"];
-                                    echo "<option value ='$id_plat'>$nombre_plat</option>";
+                        ?>
+                                    <option value ='<?php echo $id_plat; ?>'><?php echo $nombre_plat; ?></option>
+                        <?php
                                 }
                             }
                         ?>
@@ -88,7 +90,9 @@
                                 while ($gen=mysqli_fetch_array($generos)){
                                     $nombre_gen = $gen["nombre"];
                                     $id_gen = $gen["id"];
-                                    echo "<option value ='$id_gen'>$nombre_gen</option>";
+                        ?>
+                                    <option value ='<?php echo $id_gen ?>'><?php echo $nombre_gen; ?></option>
+                        <?php
                                 }
                             }
                         ?>
@@ -107,7 +111,9 @@
     <?php
         if (isset($_SESSION["error"])) {
             $exception = $_SESSION["error"];
-            echo "<script>swal('Error!', '$exception', 'error'); </script>";
+    ?>
+            <script>swal('Error!', '$exception', 'error'); </script>";
+    <?php
             unset($_SESSION["error"]);
         }
     ?>
