@@ -38,6 +38,9 @@
                 $_SESSION["error_descripcion"] = $_POST["descripcion"];
                 $_SESSION["error_url"] = $_POST["url_juego"];
                 header('Location: altaJuego.php')
+                // acá el profe me dijo que use la etiqueta <a> por alguna razón. Tenés idea de cómo es eso?
+                // sinceramente no me acuerdo si se refería a esta parte o a que la redirección no tenía porqué
+                // ser con js (me refiero a las funciones del header para cambiar de página)
             }
         }
     }
