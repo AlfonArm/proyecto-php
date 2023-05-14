@@ -5,7 +5,7 @@
     $plataformas = getAllPlataformasOrderByNombre();
     $generos = getAllGenerosOrderByNombre();
 
-    function checkSession ($DataName) {
+    function checkSession ($dataName) {
         if (isset($_SESSION[$dataName])) {
             $data = $_SESSION[$dataName];
             unset($_SESSION[$dataName]);
@@ -22,8 +22,8 @@
                 $fileSize=$_FILES['imagen']['size'];
                 if (($fileSize < 41943040)&&($_POST["genero_juego"] != "not_valid")&&($_POST["plataforma"] != "not_valid")) {
                     $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
-                    $error = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
-                    if $error throw new Exception($error);
+                    $insertar_error = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
+                    if ($insertar_error) throw new Exception($insertar_error);
                     if (empty(session_id())) session_start();
                     $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
                     header('Location: index.php');
@@ -37,10 +37,8 @@
                 $_SESSION["error_plataforma"] = $_POST["plataforma"];
                 $_SESSION["error_descripcion"] = $_POST["descripcion"];
                 $_SESSION["error_url"] = $_POST["url_juego"];
-                header('Location: altaJuego.php')
-                // acá el profe me dijo que use la etiqueta <a> por alguna razón. Tenés idea de cómo es eso?
-                // sinceramente no me acuerdo si se refería a esta parte o a que la redirección no tenía porqué
-                // ser con js (me refiero a las funciones del header para cambiar de página)
+                header('Location: altaJuego.php');
+                // el comentario de antes nada que ver. Lo que hay que hacer es que las redirecciones no sean un button con js sino un <a>
             }
         }
     }
