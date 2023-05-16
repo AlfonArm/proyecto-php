@@ -23,7 +23,7 @@
                 if (($fileSize < 41943040)&&($_POST["genero_juego"] != "not_valid")&&($_POST["plataforma"] != "not_valid")) {
                     $fileBinary=base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
                     $insertar_error = insertJuegos($_POST["nombre_juego"], $fileBinary, $fileType, $_POST["descripcion"], $_POST["url_juego"], $_POST["genero_juego"], $_POST["plataforma"]);
-                    if ($insertar_error) throw new Exception($insertar_error);
+                    if ($insertar_error != "") throw new Exception($insertar_error);
                     if (empty(session_id())) session_start();
                     $_SESSION["mostrar_nombre"] = $_POST["nombre_juego"];
                     header('Location: index.php');
@@ -31,6 +31,7 @@
                     throw new Exception("El tamaño de la imagen excede lo permitido");
             }
             catch (Exception $exception_error) {
+                if (empty(session_id())) session_start();
                 $_SESSION["error"] = $exception_error -> getMessage();
                 $_SESSION["error_nombre"] = $_POST["nombre_juego"];
                 $_SESSION["error_genero"] = $_POST["genero_juego"];

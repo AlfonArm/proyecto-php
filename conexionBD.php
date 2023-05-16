@@ -87,22 +87,14 @@ function insertJuegos($name, $fileBinary, $fileType, $description, $url, $idGene
         // esto acepta .gif? xD
         if (($fileType != ".jpg")&&($fileType != ".jpeg")&&($fileType != ".png")&&($fileType != ".gif")) return "El formato de la imagen no es válido";
         if (($description == null)||($description == "")) return "Se debe poner una descripción";
-        if (count($description) > 255) return "La descripción es demasiado larga";
+        if (strlen($description) > 255) return "La descripción es demasiado larga";
         if ($idPlataforma == "not_valid") return "Se debe insertar una plataforma válida";
-        // comprueba si existe el id de la plataforma
-        try {$a = mysqli_query($GLOBALS['link_bd'], "SELECT * FROM plataformas p WHERE p.id = $idPlataforma");}
-        catch (Exception $e) {throw new Exception ("Error al verificar el ID de la plataforma");}
-
         if ($idGenero == "not_valid") return "Se debe insertar un género válido";
-        // comprueba si existe el id del género
-        try {$a = mysqli_query($GLOBALS['link_bd'], "SELECT * FROM generos g WHERE g.id = $idGenero");}
-        catch (Exception $e) {throw new Exception ("Error al verificar el ID del género");}
-        
         if (($url == null)||($url == "")) return "Se debe insertar una URL válida";
-        if (count($url) > 80) return "La URL no debe superar los 80 carácteres";
+        if (strlen($url) > 80) return "La URL no debe superar los 80 carácteres";
         try { 
             mysqli_query($GLOBALS['link_bd'], $query.$query_values);
-            return false;
+            return "";
         }catch (Exception $e){
             throw new Exception("Error al persistir en base de datos");
         }

@@ -104,8 +104,8 @@
                     $plataforma_filtrado = getByIdPlataforma ($juego["id_plataforma"]);
                     $juego_plataforma = $plataforma_filtrado["nombre"];
             ?>
-                    <div class = 'bloque_info' id = '<?php echo agregar_juego; ?>'>
-                        <img class='reducir_img' src=<?php echo'data:".$juego_imagen_formato.";charset=utf8;base64, ".$juego_imagen."'; ?>/>
+                    <div class = 'bloque_info'>
+                        <img class='reducir_img' src=<?php echo"data:$juego_imagen_formato;charset=utf8;base64,$juego_imagen"; ?>/>
                         <div class = 'info_right'>
                             <p class = 'boldeable'><?php echo $juego_nombre; ?></p>
                             <p><?php echo $juego_desc; ?></p>
